@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>សិរីមង្គលអាពាហ៍ពិពាហ៍ សំអាង និង សុភ័ក្រ</title>
+<link href="https://fonts.googleapis.com/css2?family=Battambang&family=Moul&family=Moulpali&family=Noto+Serif+Khmer&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --radius: 20px;
+  --gold: #926900;
+  --pink: #EABFB9;
+}
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Battambang','Noto Serif Khmer',sans-serif;
+  margin: 0;
+  overflow-x: hidden;
+  color: #926900;
+  background-color: #FFE8E5;
+  background:
+    linear-gradient(rgba(255,255,255,0.3),rgba(255,255,255,0.3)),
+    url("images/background2.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* ── CANVAS ── */
+#fx {
+  position: fixed; inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* ── FLOWERS ── */
+.flower-group {
+  position: fixed; left: 50%;
+  transform: translateX(-50%);
+  width: 100%; z-index: 9999;
+  pointer-events: none;
+}
+.flower-top    { top: 0; }
+.flower-bottom { bottom: 0; }
+.flower-base {
+  width: 100%; display: block;
+  position: relative; z-index: 2;
+}
+.flower-move {
+  position: absolute; top: 0; width: 60%;
+  transform-origin: center;
+  animation: elegantMove 5s ease-in-out infinite;
+  transform: translateX(-50%); z-index: 1;
+}
+@keyframes elegantMove {
+  0%  { transform: translateX(-50%) translateY(0)   scale(1);    }
+  50% { transform: translateX(-50%) translateY(8px) scale(1.03); }
+  100%{ transform: translateX(-50%) translateY(0)   scale(1);    }
+}
+.flower-bottom .flower-move { animation-duration: 6s; }
+
+/* ── LAYOUT ── */
+.mono-Main-Tittle {
+  font-family: Moul,serif; font-size: 20px;
+  padding-top: 40px; text-align: center;
+}
+.wrap {
+  width: 90%; max-width: 1200px;
+  margin: 36px auto; padding: 50px;
+  position: relative; z-index: 2;
+  background-image: url('images/ba.png');
+  border: 10px solid #EABFB9;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+}
+.invite {
+  color: #926900; font-size: 13px; margin-top: 20px;
+  text-align: center; font-weight: 500; font-family: Moul,sans-serif;
+}
+.sub-invited { font-family: Moulpali,sans-serif; line-height: 20px; font-size: 13px; }
+.groom-parentName {
+  font-family: Moul,sans-serif; font-weight: 500;
+  line-height: 20px; font-size: 13px;
+  display: flex; justify-content: space-around; margin-top: 20px;
+}
+.groom-bridge { margin-top: 40px; text-align: center; }
+.groom-bridge::before {
+  content:""; display:block; width:120px; height:1px;
+  background:#926900; margin:0 auto 15px;
+}
+.groom-bridgeTitle {
+  display:flex; justify-content:space-between;
+  max-width:300px; margin:0 auto 10px;
+}
+.groom-bridgeTitle h2 {
+  font-family:Moulpali,sans-serif; font-size:12px; font-weight:500; margin:0;
+}
+.groom-bridge span {
+  display:block; margin:10px 0;
+  font-family:Moulpali,sans-serif; font-size:13px;
+}
+.groom-bridgeName {
+  display:flex; justify-content:space-between;
+  max-width:300px; margin:0 auto; gap:40px;
+}
+.groom-bridgeName h2 {
+  font-family:Moul,sans-serif; font-size:18px; font-weight:500; margin:0;
+}
+.eventDate { margin-top:30px; font-size:18px; line-height:2px; }
+.eventDate h6 { font-weight:500; font-family:Moul,sans-serif; }
+.card { border-radius:var(--radius); padding:14px; margin:10px 0; }
+
+/* ── GALLERY ── */
+.gallery-section { margin-top:40px; padding:20px 0; }
+.gallery-section-title {
+  font-family:Moul,sans-serif; font-size:16px;
+  color:var(--gold); margin-bottom:30px; position:relative;
+}
+.gallery-section-title::after {
+  content:""; display:block; width:80px; height:1px;
+  background:var(--gold); margin:10px auto 0; opacity:0.5;
+}
+.gallery-row-horizontal { margin-bottom:16px; }
+.gallery-row-horizontal .gallery-img {
+  width:100%; max-height:340px;
+  object-fit:cover; border-radius:14px; display:block;
+}
+.gallery-row-vertical {
+  display:flex; gap:14px; margin-bottom:16px; justify-content:center;
+}
+.gallery-row-vertical .gallery-img {
+  width:calc(50% - 7px); max-width:220px; aspect-ratio:3/4;
+  object-fit:cover; border-radius:14px; display:block; flex-shrink:0;
+}
+.gallery-row-single-vertical { margin-bottom:16px; }
+.gallery-row-single-vertical .gallery-img {
+  width:100%; max-height:480px;
+  object-fit:cover; object-position:center top;
+  border-radius:14px; display:block;
+}
+
+/* ── SCROLL ANIMATIONS ── */
+.fade-in  { opacity:0; transform:translateY(30px); transition:opacity .7s ease,transform .7s ease; }
+.fade-in.visible { opacity:1; transform:translateY(0); }
+.slide-left  { opacity:0; transform:translateX(-40px); transition:opacity .7s ease,transform .7s ease; }
+.slide-right { opacity:0; transform:translateX(40px);  transition:opacity .7s ease,transform .7s ease; }
+.slide-left.visible,.slide-right.visible { opacity:1; transform:translateX(0); }
+.gallery-img { transition:transform .3s ease,box-shadow .3s ease; cursor:pointer; }
+.gallery-img:hover { transform:scale(1.02); box-shadow:0 10px 30px rgba(146,105,0,.15); }
+
+/* ── LIGHTBOX ── */
+.lightbox {
+  display:none; position:fixed; inset:0;
+  background:rgba(0,0,0,.85); z-index:99999;
+  justify-content:center; align-items:center; padding:20px;
+  animation:lbFade .25s ease;
+}
+@keyframes lbFade { from{opacity:0} to{opacity:1} }
+.lightbox.open { display:flex; }
+.lightbox img {
+  max-width:90vw; max-height:88vh; border-radius:12px;
+  border:4px solid var(--pink); object-fit:contain;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+.lightbox-close {
+  position:fixed; top:18px; right:24px; font-size:36px; color:#fff;
+  cursor:pointer; line-height:1; user-select:none; z-index:100000;
+  background:rgba(0,0,0,.4); width:44px; height:44px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+}
+.lightbox-close:hover { background:rgba(234,191,185,.7); }
+
+/* ── MUSIC PLAYER ── */
+.music-player {
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,240,235,0.92);
+  backdrop-filter: blur(8px);
+  border: 1.5px solid var(--pink);
+  border-radius: 50px;
+  padding: 8px 16px 8px 10px;
+  box-shadow: 0 4px 20px rgba(146,105,0,0.18);
+  transition: all .3s ease;
+}
+.music-player:hover { box-shadow: 0 6px 28px rgba(146,105,0,0.28); }
+.music-btn {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--gold); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 14px; flex-shrink: 0;
+  transition: background .2s;
+}
+.music-btn:hover { background: #b08000; }
+.music-info { display: flex; flex-direction: column; }
+.music-title {
+  font-family: Moulpali,sans-serif; font-size: 10px;
+  color: var(--gold); line-height: 1.3; max-width: 140px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.music-artist { font-size: 9px; color: #b08870; }
+.music-note {
+  font-size: 16px;
+  animation: noteFloat 2s ease-in-out infinite;
+  display: inline-block;
+}
+@keyframes noteFloat {
+  0%,100% { transform: translateY(0) rotate(-5deg); }
+  50%      { transform: translateY(-4px) rotate(5deg); }
+}
+
+/* hide YT iframe */
+#yt-frame { position:fixed; top:-9999px; left:-9999px; width:1px; height:1px; }
+
+@media(max-width:760px) {
+  .wrap { padding:20px; }
+  .gallery-row-vertical .gallery-img { max-width:160px; }
+  .music-player { bottom:16px; right:12px; padding:6px 12px 6px 8px; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="fx"></canvas>
+
+<!-- HIDDEN YOUTUBE PLAYER -->
+<div id="yt-frame"></div>
+
+<!-- MUSIC PLAYER UI -->
+<div class="music-player" id="musicPlayer">
+  <button class="music-btn" id="musicBtn" onclick="toggleMusic()">▶</button>
+  <div class="music-info">
+    <span class="music-title">ភ្ជាប់និស្ស័យ</span>
+    <span class="music-artist">Nisai Ft. Kz Long Chan</span>
+  </div>
+  <span class="music-note">♪</span>
+</div>
+
+<!-- FLOWERS -->
+<div class="flower-group flower-top">
+  <img src="images/floral2-1-Top.jpg" class="flower-base">
+  <img src="images/movingfloral-2-1-Top.jpg" class="flower-move">
+</div>
+<div class="flower-group flower-bottom">
+  <img src="images/floral2-1-Bottom.jpg" class="flower-base">
+  <img src="images/movingfloral-2-1-Bottom.jpg" class="flower-move" style="align-items:flex-end;">
+</div>
+
+<div class="wrap">
+  <header style="padding-top:15px;">
+    <div class="mono-Main-Tittle">សិរីមង្គលអាពាហ៍ពិពាហ៍</div>
+  </header>
+
+  <div class="groom-parentName">
+    <div><p>លោក<br>លោកស្រី</p></div>
+    <div><p>ឪពុក<br>ម្តាយ</p></div>
+  </div>
+
+  <div>
+    <h4 class="invite">សូមគោរពអញ្ជើញ</h4>
+    <p class="sub-invited">សូមគោរពអញ្ជើញ ឯកឧត្ដម អ្នកឧកញ៉ា លោកឧកញ៉ា លោកជំទាវ លោក លោកស្រី អ្នកនាងកញ្ញា អញ្ជើញចូលរួមជាអធិបតីយភាព និងជាភ្ញៀវកិត្តិយស ក្នុងកម្មវិធីសិរីមង្គលអាពាហ៍ពិពាហ៍ កូនប្រុស កូនស្រី របស់យើងខ្ញុំ។</p>
+  </div>
+
+  <div class="groom-bridge">
+    <div class="groom-bridgeTitle">
+      <h2>កូនប្រុស</h2><h2>កូនស្រី</h2>
+    </div>
+    <span>ជាគូនឹង</span>
+    <div class="groom-bridgeName">
+      <h2>លាបហេង</h2><h2>រ៉ានី</h2>
+    </div>
+  </div>
+
+  <div class="eventDate">
+    <h6>ដែលនឹងប្រព្រឹត្តទៅនៅ</h6>
+    <h6>ថ្ងៃច័ន្ទ ទី២៣ ខែកុម្ភៈ ឆ្នាំ២០២៦</h6>
+    <h6>ស្ថិតនៅ គេហដ្ឋានខាងស្រី ភូមិបឹង សង្កាត់ពញាពន់</h6>
+    <h6>ខ័ណ្ឌព្រែកព្នៅ រាជធានីភ្នំពេញ ដោយមេត្រីភាព។</h6>
+    <h6>សូមអរគុណ!</h6>
+  </div>
+
+  <div class="card">
+    <h2>ទីតាំង</h2>
+    <p>Phnom Penh, Cambodia</p>
+    <img src="images/Basemap.png" width="100%">
+    <p>or scan the QR code</p>
+    <div style="background:rgba(255,255,255,0.2);">
+      <img src="images/eventMapQr.png" width="50%">
+    </div>
+  </div>
+
+  <div class="gallery-section">
+    <div class="gallery-section-title">រូបភាព</div>
+
+    <div class="gallery-row-horizontal">
+      <img src="images/cph2.JPG" alt="" class="gallery-img fade-in" onclick="openLightbox(this)">
+    </div>
+    <div class="gallery-row-vertical">
+      <img src="images/cpv1.JPG" alt="" class="gallery-img slide-left" onclick="openLightbox(this)">
+      <img src="images/cpv2.JPG" alt="" class="gallery-img slide-right" onclick="openLightbox(this)">
+    </div>
+    <div class="gallery-row-horizontal">
+      <img src="images/cph1.JPG" alt="" class="gallery-img fade-in" onclick="openLightbox(this)">
+    </div>
+    <div class="gallery-row-vertical">
+      <img src="images/cpv3.JPG" alt="" class="gallery-img slide-left" onclick="openLightbox(this)">
+      <img src="images/cpv4.JPG" alt="" class="gallery-img slide-right" onclick="openLightbox(this)">
+    </div>
+    <div class="gallery-row-horizontal">
+      <img src="images/cph3.JPG" alt="" class="gallery-img fade-in" onclick="openLightbox(this)">
+    </div>
+    <div class="gallery-row-horizontal">
+      <img src="images/bh1.JPG" alt="" class="gallery-img fade-in" onclick="openLightbox(this)">
+    </div>
+    <div class="gallery-row-horizontal">
+      <img src="images/cph4.JPG" alt="" class="gallery-img fade-in" onclick="openLightbox(this)">
+    </div>
+    <div class="gallery-row-vertical">
+      <img src="images/cpv5.JPG" alt="" class="gallery-img slide-left" onclick="openLightbox(this)">
+      <img src="images/gv1.JPG"  alt="" class="gallery-img slide-right" onclick="openLightbox(this)">
+    </div>
+    <div class="gallery-row-single-vertical">
+      <img src="images/cpv6.JPG" alt="" class="gallery-img fade-in" onclick="openLightbox(this)">
+    </div>
+    <div class="gallery-row-horizontal">
+      <img src="images/cpv7.JPG" alt="" class="gallery-img fade-in" onclick="openLightbox(this)">
+    </div>
+    <div class="gallery-row-vertical">
+      <img src="images/cpv7.JPG" alt="" class="gallery-img slide-left" onclick="openLightbox(this)">
+      <img src="images/bv1.JPG"  alt="" class="gallery-img slide-right" onclick="openLightbox(this)">
+    </div>
+    <div class="gallery-row-single-vertical">
+      <img src="images/cpv8.JPG" alt="" class="gallery-img fade-in" onclick="openLightbox(this)">
+    </div>
+    <div class="gallery-row-horizontal">
+      <img src="images/cph5.JPG" alt="" class="gallery-img fade-in" onclick="openLightbox(this)">
+    </div>
+    <div class="gallery-row-vertical">
+      <img src="images/gv2.JPG" alt="" class="gallery-img slide-left" onclick="openLightbox(this)">
+      <img src="images/bv2.JPG" alt="" class="gallery-img slide-right" onclick="openLightbox(this)">
+    </div>
+    <div class="gallery-row-horizontal">
+      <img src="images/cpv9.JPG" alt="" class="gallery-img fade-in" onclick="openLightbox(this)">
+    </div>
+  </div>
+
+  <footer><p>Made with ☕ • Senghou</p></footer>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<!-- YOUTUBE IFrame API -->
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+/* ───────────────────────────
+   YOUTUBE PLAYER
+─────────────────────────── */
+let ytPlayer = null;
+let ytReady  = false;
+let isPlaying = false;
+
+function onYouTubeIframeAPIReady() {
+  ytPlayer = new YT.Player('yt-frame', {
+    videoId: 'Mn_qLC7_ueA',
+    playerVars: {
+      autoplay: 1,
+      loop: 1,
+      playlist: 'Mn_qLC7_ueA',
+      controls: 0,
+      disablekb: 1,
+      fs: 0,
+      modestbranding: 1,
+    },
+    events: {
+      onReady: (event) => {
+        ytReady = true;
+        event.target.playVideo().catch(() => console.log("Autoplay blocked"));
+        // update button icon
+        document.getElementById('musicBtn').textContent = '⏸';
+        isPlaying = true;
+      },
+      onStateChange: (e) => {
+        isPlaying = (e.data === YT.PlayerState.PLAYING);
+        document.getElementById('musicBtn').textContent = isPlaying ? '⏸' : '▶';
+      }
+    }
+  });
+}
+
+function toggleMusic() {
+  if (!ytReady) return;
+  if (isPlaying) {
+    ytPlayer.pauseVideo();
+  } else {
+    ytPlayer.playVideo();
+  }
+}
+
+/* ───────────────────────────
+   SCROLL ANIMATIONS
+─────────────────────────── */
+const animEls = document.querySelectorAll('.fade-in,.slide-left,.slide-right');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.15 });
+animEls.forEach(el => io.observe(el));
+
+/* ───────────────────────────
+   LIGHTBOX
+─────────────────────────── */
+function openLightbox(img) {
+  document.getElementById('lightbox-img').src = img.src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(event) {
+  if (!event || event.target !== document.getElementById('lightbox-img')) {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox(); });
+
+/* ───────────────────────────
+   CANVAS EFFECTS
+   🦋 Beautiful butterflies flying UPWARD
+   🐦 Birds gliding across
+   🍂 Slow falling petals/leaves
+─────────────────────────── */
+(function(){
+  const canvas = document.getElementById('fx');
+  const ctx    = canvas.getContext('2d');
+  let W, H;
+
+  function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+
+  /* ── Colour palettes ── */
+  const bfPalettes = [
+    { body:'#7b2d5e', w1:'#e8789c', w2:'#f4a7c0', spot:'#fff0f5' }, // pink
+    { body:'#5a3a00', w1:'#f7c35a', w2:'#fae08a', spot:'#fffbe8' }, // gold
+    { body:'#1a4a2e', w1:'#7ecba0', w2:'#b2e8c8', spot:'#f0fff6' }, // mint
+    { body:'#3a1a5e', w1:'#a87ed4', w2:'#d4b0f0', spot:'#f5f0ff' }, // lavender
+    { body:'#5e2a00', w1:'#f09050', w2:'#f8c090', spot:'#fff5ee' }, // amber
+  ];
+  const leafCols = ['#e8c86a','#d4955a','#c96a3a','#e2b080','#f0d080','#c8e8a0','#f4d0b0'];
+
+  /* ════════════════════════
+     BUTTERFLY  — flies upward with graceful path
+  ════════════════════════ */
+  class Butterfly {
+    constructor(){ this.init(true); }
+
+    init(scatter){
+      const pal   = bfPalettes[Math.floor(Math.random()*bfPalettes.length)];
+      this.pal    = pal;
+      this.size   = 13 + Math.random()*16;          // wing half-span
+      this.x      = Math.random()*W;
+      this.y      = scatter ? Math.random()*H : H + this.size*2;
+      this.vx     = (Math.random()-.5)*0.5;         // gentle horizontal drift
+      this.vy     = -(0.35 + Math.random()*0.45);   // upward speed (slow)
+      this.flapT  = Math.random()*Math.PI*2;
+      this.flapSpd= 0.045 + Math.random()*0.03;     // slower flap
+      this.swayT  = Math.random()*Math.PI*2;
+      this.swaySpd= 0.008 + Math.random()*0.006;
+      this.swayAmp= 0.8  + Math.random()*1.2;
+      this.tiltT  = Math.random()*Math.PI*2;
+      this.opacity= 0.6  + Math.random()*0.3;
+      this.rot    = (Math.random()-.5)*0.15;
+    }
+
+    update(){
+      this.flapT += this.flapSpd;
+      this.swayT += this.swaySpd;
+      this.tiltT += 0.012;
+      this.x += this.vx + Math.sin(this.swayT)*this.swayAmp;
+      this.y += this.vy + Math.sin(this.tiltT)*0.25;
+      if(this.y < -this.size*3) this.init(false);
+      if(this.x < -80) this.x = W+80;
+      if(this.x > W+80) this.x = -80;
+    }
+
+    draw(){
+      /* flap: 0=fully closed (edge-on), 1=fully open */
+      const flap = (Math.cos(this.flapT)+1)/2;  // 0..1
+
+      ctx.save();
+      ctx.globalAlpha = this.opacity;
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.rot + Math.sin(this.tiltT)*0.08);
+
+      const s  = this.size;
+      const pal = this.pal;
+
+      /* ── Helper: draw one wing half ── */
+      // scaleX controls the fold: 1=open, near-0=folded
+      const drawWingPair = (scaleX, yOff, rw, rh, fillCol, alpha) => {
+        ctx.save();
+        ctx.globalAlpha = alpha;
+        // left wing
+        ctx.save();
+        ctx.scale(-scaleX, 1);
+        ctx.beginPath();
+        ctx.moveTo(0, yOff);
+        ctx.bezierCurveTo(-s*0.3, yOff-rh*0.9, -rw, yOff-rh, -rw*0.9, yOff+rh*0.1);
+        ctx.bezierCurveTo(-rw*0.6, yOff+rh*0.6, -s*0.15, yOff+rh*0.3, 0, yOff);
+        ctx.fillStyle = fillCol;
+        ctx.fill();
+        ctx.restore();
+        // right wing (mirror)
+        ctx.save();
+        ctx.scale(scaleX, 1);
+        ctx.beginPath();
+        ctx.moveTo(0, yOff);
+        ctx.bezierCurveTo(-s*0.3, yOff-rh*0.9, -rw, yOff-rh, -rw*0.9, yOff+rh*0.1);
+        ctx.bezierCurveTo(-rw*0.6, yOff+rh*0.6, -s*0.15, yOff+rh*0.3, 0, yOff);
+        ctx.fillStyle = fillCol;
+        ctx.fill();
+        ctx.restore();
+        ctx.restore();
+      };
+
+      /* Upper wings */
+      drawWingPair(flap, -s*0.1, s*1.1, s*0.95, pal.w1, 1);
+      /* Upper wing inner pattern */
+      drawWingPair(flap*0.92, -s*0.08, s*0.65, s*0.58, pal.w2, 0.7);
+
+      /* Lower wings */
+      drawWingPair(flap*0.95, s*0.25, s*0.82, s*0.65, pal.w1, 0.9);
+      drawWingPair(flap*0.88, s*0.28, s*0.5,  s*0.42, pal.w2, 0.6);
+
+      /* Subtle spot on upper wing */
+      ctx.save();
+      ctx.globalAlpha = this.opacity * 0.5 * flap;
+      ctx.fillStyle = pal.spot;
+      ctx.beginPath();
+      ctx.ellipse(-s*0.55*flap, -s*0.3, s*0.14, s*0.12, 0.3, 0, Math.PI*2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.ellipse( s*0.55*flap, -s*0.3, s*0.14, s*0.12, -0.3, 0, Math.PI*2);
+      ctx.fill();
+      ctx.restore();
+
+      /* Antennae */
+      ctx.save();
+      ctx.globalAlpha = this.opacity * 0.7;
+      ctx.strokeStyle = pal.body;
+      ctx.lineWidth   = 0.8;
+      ctx.lineCap     = 'round';
+      [-1,1].forEach(side => {
+        ctx.beginPath();
+        ctx.moveTo(0, -s*0.15);
+        ctx.quadraticCurveTo(side*s*0.3, -s*0.7, side*s*0.35*flap, -s*0.95);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(side*s*0.35*flap, -s*0.97, s*0.055, 0, Math.PI*2);
+        ctx.fillStyle = pal.body;
+        ctx.fill();
+      });
+      ctx.restore();
+
+      /* Body */
+      ctx.beginPath();
+      ctx.ellipse(0, s*0.1, s*0.07, s*0.55, 0, 0, Math.PI*2);
+      const bodyGrad = ctx.createLinearGradient(0,-s*0.45,0,s*0.65);
+      bodyGrad.addColorStop(0, pal.w2);
+      bodyGrad.addColorStop(1, pal.body);
+      ctx.fillStyle = bodyGrad;
+      ctx.fill();
+      /* Head */
+      ctx.beginPath();
+      ctx.arc(0, -s*0.42, s*0.1, 0, Math.PI*2);
+      ctx.fillStyle = pal.body;
+      ctx.fill();
+
+      ctx.restore();
+    }
+  }
+
+  /* ════════════════════════
+     BIRD — silhouette gliding
+  ════════════════════════ */
+  class Bird {
+    constructor(){ this.reset(true); }
+    reset(scatter){
+      this.dir  = Math.random()<.5 ? 1 : -1;
+      this.x    = scatter ? Math.random()*W : (this.dir===1 ? -60 : W+60);
+      this.y    = 30 + Math.random()*(H*.4);
+      this.size = 5 + Math.random()*6;
+      this.spd  = 0.7 + Math.random()*0.9;
+      this.fT   = Math.random()*Math.PI*2;
+      this.fSpd = 0.06 + Math.random()*0.05;
+      this.waveT= Math.random()*Math.PI*2;
+      this.opacity= 0.35 + Math.random()*.25;
+    }
+    update(){
+      this.fT    += this.fSpd;
+      this.waveT += 0.008;
+      this.x += this.spd * this.dir;
+      this.y += Math.sin(this.waveT)*0.4;
+      if(this.dir===1&&this.x>W+80) this.reset(false);
+      if(this.dir===-1&&this.x<-80) this.reset(false);
+    }
+    draw(){
+      const flap = Math.sin(this.fT);
+      ctx.save();
+      ctx.globalAlpha = this.opacity;
+      ctx.translate(this.x, this.y);
+      if(this.dir===-1) ctx.scale(-1,1);
+      const s = this.size;
+      const drop = flap * s * 0.9;
+      ctx.strokeStyle = '#3a2010';
+      ctx.lineWidth = s * 0.2;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(0,0);
+      ctx.quadraticCurveTo(-s*.8, drop, -s*1.7, drop*.3);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(0,0);
+      ctx.quadraticCurveTo( s*.8, drop,  s*1.7, drop*.3);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(0,0,s*.13,0,Math.PI*2);
+      ctx.fillStyle='#3a2010';
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  /* ════════════════════════
+     PETAL / LEAF  — slow drift
+  ════════════════════════ */
+  class Petal {
+    constructor(){ this.reset(true); }
+    reset(scatter){
+      this.x     = Math.random()*W;
+      this.y     = scatter ? Math.random()*H : -20;
+      this.size  = 4 + Math.random()*7;
+      this.col   = leafCols[Math.floor(Math.random()*leafCols.length)];
+      this.vy    = 0.35 + Math.random()*0.45;   // slow fall
+      this.vx    = (Math.random()-.5)*.4;
+      this.rot   = Math.random()*Math.PI*2;
+      this.rotSpd= (Math.random()-.5)*.025;
+      this.swingT= Math.random()*Math.PI*2;
+      this.swAmp = 0.4 + Math.random()*.8;
+      this.opacity=0.4 + Math.random()*.35;
+    }
+    update(){
+      this.swingT += 0.018;
+      this.rot    += this.rotSpd;
+      this.x += this.vx + Math.sin(this.swingT)*this.swAmp;
+      this.y += this.vy;
+      if(this.y > H+30) this.reset(false);
+    }
+    draw(){
+      ctx.save();
+      ctx.globalAlpha = this.opacity;
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.rot);
+      const s = this.size;
+      ctx.beginPath();
+      ctx.moveTo(0,-s);
+      ctx.bezierCurveTo( s*.8,-s*.4,  s*.8, s*.5, 0, s*.6);
+      ctx.bezierCurveTo(-s*.8, s*.5, -s*.8,-s*.4, 0,-s);
+      ctx.fillStyle = this.col;
+      ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(0,-s); ctx.lineTo(0,s*.6);
+      ctx.strokeStyle='rgba(0,0,0,0.1)';
+      ctx.lineWidth=0.6; ctx.stroke();
+      ctx.restore();
+    }
+  }
+
+  /* ── Pools ── */
+  const butterflies = Array.from({length:10}, ()=>new Butterfly());
+  const birds       = Array.from({length:5},  ()=>new Bird());
+  const petals      = Array.from({length:20}, ()=>new Petal());
+
+  function loop(){
+    ctx.clearRect(0,0,W,H);
+    petals.forEach(p=>{ p.update(); p.draw(); });
+    butterflies.forEach(b=>{ b.update(); b.draw(); });
+    birds.forEach(b=>{ b.update(); b.draw(); });
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+</script>
+</body>
+</html>

@@ -76,12 +76,12 @@
 /* ── L4: Lamp 410×570 (portrait) — centred top ── */
 #layer-lamp {
   z-index: 4;
-  animation: lampSway 5s ease-in-out infinite;
+  animation: lampSway 3s ease-in-out infinite;
   transform-origin: top center;
 }
 #layer-lamp img {
   position: absolute;
-  top: 30px;
+  top: 50px;
   left: 50%;
   transform: translateX(-50%);
   /* lamp is small — scale to ~18% viewport width */
@@ -149,14 +149,14 @@
 .floral-top-lb, .floral-top-rb{
   position: absolute;
   margin-top: 20px;  /* Nudges it up to sit flush with the ceiling */
-  width: clamp(120px, 100vw, 280px);
+  width: clamp(120px, 80vw, 280px);
   height: auto;
   object-fit: contain;
 }
 .floral-top-lf, .floral-top-rf {
   position: absolute;
   margin-top: -13%;  /* Nudges it up to sit flush with the ceiling */
-  width: clamp(100px, 50vw, 320px);
+  width: clamp(100px, 40vw, 320px);
   height: auto;
   object-fit: contain;
 }
@@ -205,7 +205,7 @@
   width: clamp(80px, 28vw, 260px);
   height: auto;
   transform-origin: bottom left;
-  animation: fbotL 6s ease-in-out infinite;
+  animation: fbotL 3s ease-in-out infinite;
 }
 
 .floral-bot-lcf {
@@ -221,7 +221,7 @@
   width: clamp(80px, 28vw, 260px);
   height: auto;
   transform-origin: bottom right;
-  animation: fbotR 6s ease-in-out infinite 0.2s;
+  animation: fbotR 5s ease-in-out infinite 0.2s;
 }
 
 .floral-bot-rcf {
@@ -544,6 +544,180 @@ body::before {
 .lightbox-close { position:fixed; top:18px; right:24px; font-size:36px; color:#fff; cursor:pointer; line-height:1; user-select:none; z-index:100000; background:rgba(0,0,0,.4); width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
 .lightbox-close:hover { background:rgba(234,191,185,.7); }
 
+/* ══════════════════════════════════
+   WISHES SECTION - ELEGANT BLUR
+   ══════════════════════════════════ */
+#wishes-section {
+  padding: 60px 0;
+  border-radius: 10px;
+  border: 1.5px solid rgba(240,216,148,0.8);
+  background: linear-gradient(135deg, #fff5f2 0%, #fdf8f5 50%, #f0e6df 100%);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ✨ floating light effect */
+#wishes-section::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(234,191,185,0.25), transparent 70%);
+  top: -100px;
+  left: -100px;
+  z-index: 0;
+}
+
+#wishes-section::after {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(176,128,0,0.15), transparent 70%);
+  bottom: -100px;
+  right: -100px;
+  z-index: 0;
+  pointer-events: none;
+}
+/* Floating Premium Glass Card */
+.wish-card-premium {
+  position: relative;
+  width: 95%;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 900px;
+  margin: 0 auto 40px;
+  padding: 20px 10px;
+
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(18px);
+
+  border-radius: 30px;
+  border: 1px solid #EABFB9;
+
+  box-shadow: 0 25px 60px rgba(0,0,0,0.08);
+
+  z-index: 2;
+  transition: 0.4s ease;
+}
+
+/* 🌸 soft glow when hover */
+.wish-card-premium:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 35px 80px rgba(146,105,0,0.15);
+}
+/* wish-content */
+.wish-content {
+  display: flex;
+  flex-direction: column;   /* VERY IMPORTANT */
+  align-items: stretch;     /* allows full width */
+  justify-content: flex-start;
+  height: 100%;
+  width: 100%;
+}
+/* Typography Enhancements */
+.author-top {
+  font-family: Moulpali, sans-serif;
+  font-size: 13px;
+  color: #926900;
+  flex-shrink: 0;
+  margin-bottom: 12px;
+  opacity: 0.9;
+}
+#wish-text {
+  font-family: 'Noto Serif Khmer', serif;
+  font-size: 16px;
+  color: #4a3728;
+  line-height: 1.8;
+  text-align: center;
+  flex: 1;
+  width: 100%;
+  overflow-y: auto;
+  white-space: pre-line;
+  word-break: break-word;
+  padding: 0 20px;
+  position: relative;   /* needed for quotes */
+}
+
+#wish-text::-webkit-scrollbar {
+  width: 4px;
+}
+
+#wish-text::-webkit-scrollbar-thumb {
+  background: rgba(146,105,0,0.4);
+  border-radius: 5px;
+}
+
+#wish-text::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#wish-author {
+  transition: opacity 0.4s ease;
+}
+/* ══════════════════════════════════
+   MODERN FROSTED FORM
+   ══════════════════════════════════ */
+.wish-form-modern {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.wish-form-modern input,
+.wish-form-modern textarea {
+  width: 100%;
+  padding: 14px 18px;
+  margin-bottom: 15px;
+
+  background: rgba(255,255,255,0.7);
+  border: 1px solid #EABFB9;
+  border-radius: 12px;
+
+  font-family: Battambang;
+  font-size: 14px;
+}
+
+.wish-form-modern input:focus,
+.wish-form-modern textarea:focus {
+  border-color: #926900;
+  box-shadow: 0 5px 15px rgba(146,105,0,0.1);
+}
+
+/* Subtle Trash Icon Improvement */
+.delete-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  color: #888;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.wish-card-premium:hover .delete-icon {
+  opacity: 1;
+}
+
+.delete-icon:hover {
+  background: #ffeded;
+  color: #e06018;
+}
+
 /* Music player */
 .music-player { position:fixed; bottom:24px; right:20px; z-index:10000; display:flex; align-items:center; gap:10px; background:rgba(255,240,235,0.92); backdrop-filter:blur(8px); border:1.5px solid var(--pink); border-radius:50px; padding:8px 16px 8px 10px; box-shadow:0 4px 20px rgba(146,105,0,0.18); transition:all .3s ease; }
 .music-player:hover { box-shadow:0 6px 28px rgba(146,105,0,0.28); }
@@ -739,6 +913,32 @@ body::before {
       </div>
       <div class="gallery-row-horizontal"><img src="images/cpv9.webp" alt="" class="gallery-img fade-in" loading="lazy" onclick="openLightbox(this)"></div>
     </div>
+    <section id="wishes-section">
+      <h2 style="padding-bottom: 10px;" ​​​​class="op-title">សារជូនពរ</h2>
+      
+      <div id="wishes-container">
+        <div id="wishes-display" class="wish-card-premium">
+          <button id="delete-wish-btn" class="delete-icon" onclick="handleDelete()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            </svg>
+          </button>
+
+          <div class="wish-content">
+            <span id="wish-author" class="author-top"></span>
+            <p id="wish-text"> Be the first to send your blessing</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="wish-form-modern">
+        <input type="text" id="guest-name" placeholder="Your Name" required>
+        <textarea id="guest-message" placeholder="Write your heartfelt wish here..." rows="3" required></textarea>
+        <button onclick="submitWish()" class="op-btn" >ផ្ញើសារ</button>
+      </div>
+    </section>
+
     <footer><p>Made with Senghou</p></footer>
   </div>
 
@@ -748,8 +948,210 @@ body::before {
   </div>
 </div>
 
-<script src="https://www.youtube.com/iframe_api"></script>
-<script>
+<script type="module">
+  /* ══════════════════════════════════
+     1. YOUTUBE API DYNAMIC LOAD
+  ══════════════════════════════════ */
+  // DO NOT use <script src="..."> in the HTML. Use this instead:
+  if (!window.YT) {
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  }
+
+  /* ══════════════════════════════════
+     2. FIREBASE SETUP
+  ══════════════════════════════════ */
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyD5IALw4WeWOf3awXeKR_btm3GHLbCVD_w",
+    authDomain: "weddinginvitation-7bcd0.firebaseapp.com",
+    databaseURL: "https://weddinginvitation-7bcd0-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "weddinginvitation-7bcd0",
+    storageBucket: "weddinginvitation-7bcd0.firebasestorage.app",
+    messagingSenderId: "1030339547742",
+    appId: "1:1030339547742:web:15707ff3fcda0fc543dacf",
+    measurementId: "G-LQFHNDVW1C"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const wishesRef = ref(db, 'wishes');
+
+  /* ══════════════════════════════════
+     3. GLOBAL INITIALIZATION
+  ══════════════════════════════════ */
+  window.ytPlayer = null;
+  window.ytReady = false;
+  window.isPlaying = false;
+
+  // This MUST be on window to be seen by the external YouTube script
+  window.onYouTubeIframeAPIReady = function() {
+    console.log("YouTube API Ready Signal Received");
+    
+    const frameTarget = document.getElementById('yt-frame');
+    if (!frameTarget) {
+        console.error("Critical: #yt-frame not found in HTML.");
+        return;
+    }
+
+    window.ytPlayer = new YT.Player('yt-frame', {
+        videoId: 'Mn_qLC7_ueA',
+        playerVars: { 
+            autoplay: 0, 
+            loop: 1, 
+            playlist: 'Mn_qLC7_ueA', 
+            controls: 0, 
+            disablekb: 1, 
+            fs: 0, 
+            modestbranding: 1,
+            origin: window.location.origin 
+        },
+        events: {
+            onReady: () => { 
+                console.log("YouTube Player Loaded Successfully");
+                window.ytReady = true; 
+            },
+            onStateChange: (e) => {
+                window.isPlaying = (e.data === YT.PlayerState.PLAYING);
+                const btn = document.getElementById('musicBtn');
+                if(btn) btn.textContent = window.isPlaying ? '⏸' : '▶';
+            }
+        }
+    });
+  };
+  window.openInvitation = function() {
+    const opening = document.getElementById('opening');
+    const invitation = document.getElementById('invitation');
+
+    // FIX: Start music IMMEDIATELY before the timeout for iOS/Mobile
+    if (window.ytReady && window.ytPlayer) {
+      window.ytPlayer.unMute(); 
+      window.ytPlayer.setVolume(35);
+      window.ytPlayer.playVideo();
+    }
+
+    opening.classList.add('fade-out');
+    if (window._killOpeningBF) window._killOpeningBF();
+
+    setTimeout(() => {
+      opening.style.display = 'none';
+      document.body.style.overflow = 'auto';
+      invitation.classList.add('visible');
+      // Initialize other effects
+      if (typeof initScrollAnim === 'function') initScrollAnim();
+      if (typeof initInvFX === 'function') initInvFX();
+    }, 1800);
+  };
+
+   window.toggleMusic = function() {
+    // If API isn't ready, we can't do anything yet
+    if (!window.ytReady || !window.ytPlayer) {
+        console.warn("YouTube Player not ready yet.");
+        return;
+    }
+
+    // Check actual player state from the API
+    const state = window.ytPlayer.getPlayerState();
+    
+    if (state === YT.PlayerState.PLAYING) {
+        window.ytPlayer.pauseVideo();
+    } else {
+        // Essential for Mobile: Ensure unmuted and set volume right before playing
+        window.ytPlayer.unMute();
+        window.ytPlayer.setVolume(35);
+        
+        // Use a promise-style check if possible, or just force play
+        window.ytPlayer.playVideo();
+    }
+};
+
+  /* ══════════════════════════════════
+      4. WISH SYSTEM LOGIC (Fixed)
+   ══════════════════════════════════ */
+let allWishes = [];          // FIX 1: Start as an empty array
+let currentWishIndex = 0;    // FIX 2: Define the index variable
+let currentWishId = null;    
+
+// Listen for data
+onValue(wishesRef, (snapshot) => {
+  const data = snapshot.val();
+  allWishes = data ? Object.entries(data) : [];
+  
+  // FIX 3: Only trigger the first display if the screen is currently empty
+  const display = document.getElementById('wish-text');
+  if (allWishes.length > 0 && (!display.textContent || display.textContent === "Loading wishes...")) {
+    updateWishDisplay();
+  }
+});
+
+window.submitWish = function() {
+  const nameInput = document.getElementById('guest-name');
+  const messageInput = document.getElementById('guest-message');
+  
+  if (nameInput.value && messageInput.value) {
+    push(wishesRef, { 
+      name: nameInput.value, 
+      message: messageInput.value, 
+      timestamp: Date.now() 
+    })
+    .then(() => {
+      nameInput.value = '';
+      messageInput.value = '';
+      alert("Wish sent! Thank you.");
+    });
+  }
+};
+
+function updateWishDisplay() {
+  const display = document.getElementById('wish-text');
+  const author = document.getElementById('wish-author');
+  
+  if (allWishes.length === 0 || !display) return;
+
+  // Ensure index is within bounds (prevents errors if wishes are deleted)
+  if (currentWishIndex >= allWishes.length) currentWishIndex = 0;
+
+  const [id, wishData] = allWishes[currentWishIndex];
+  currentWishId = id; 
+
+  display.style.opacity = 0;
+  author.style.opacity = 0;
+  
+  setTimeout(() => {
+    display.textContent = wishData.message;
+    author.textContent = wishData.name;
+
+    display.scrollTop = 0; // reset scroll
+
+    display.style.opacity = 1;
+    author.style.opacity = 1;
+    
+    currentWishIndex = (currentWishIndex + 1) % allWishes.length;
+  }, 500);
+}
+
+window.handleDelete = function() {
+  if (!currentWishId) return;
+
+  const pass = prompt("Enter 4-digit admin password to delete this wish:");
+  if (pass === "1234") {
+    const itemRef = ref(db, `wishes/${currentWishId}`);
+    remove(itemRef).then(() => {
+      alert("Wish deleted.");
+      // Force an update so it doesn't show the deleted wish for 5 more seconds
+      updateWishDisplay();
+    });
+  } else {
+    alert("Incorrect password.");
+  }
+};
+
+setInterval(updateWishDisplay, 5000);
+
 /* ══════════════════════════════════
    OPENING BUTTERFLIES
 ══════════════════════════════════ */
@@ -837,44 +1239,6 @@ body::before {
   })();
   window._killOpeningBF=()=>{alive=false;ctx.clearRect(0,0,W,H);};
 })();
-
-/* ══════════════════════════════════
-   OPEN INVITATION
-══════════════════════════════════ */
-let ytPlayer=null,ytReady=false,isPlaying=false;
-
-function openInvitation(){
-  const opening=document.getElementById('opening');
-  const invitation=document.getElementById('invitation');
-  opening.classList.add('fade-out');
-  if(window._killOpeningBF)window._killOpeningBF();
-  setTimeout(()=>{
-    opening.style.display='none';
-    document.body.style.overflow='auto';
-    invitation.classList.add('visible');
-    if(ytReady){ytPlayer.setVolume(35);ytPlayer.playVideo();}
-    initScrollAnim();
-    initInvFX();
-  },1800);
-}
-
-function onYouTubeIframeAPIReady(){
-  ytPlayer=new YT.Player('yt-frame',{
-    videoId:'Mn_qLC7_ueA',
-    playerVars:{autoplay:0,loop:1,playlist:'Mn_qLC7_ueA',controls:0,disablekb:1,fs:0,modestbranding:1},
-    events:{
-      onReady:(e)=>{ytReady=true;},
-      onStateChange:(e)=>{
-        isPlaying=(e.data===YT.PlayerState.PLAYING);
-        document.getElementById('musicBtn').textContent=isPlaying?'⏸':'▶';
-      }
-    }
-  });
-}
-function toggleMusic(){
-  if(!ytReady)return;
-  if(isPlaying){ytPlayer.pauseVideo();}else{ytPlayer.setVolume(35);ytPlayer.playVideo();}
-}
 
 function initScrollAnim(){
   const els=document.querySelectorAll('#invitation .fade-in,#invitation .slide-left,#invitation .slide-right');

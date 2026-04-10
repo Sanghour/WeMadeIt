@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>សិរីមង្គលអាពាហ៍ពិពាហ៍ លាបហេង និង រ៉ានី</title>
-  <meta name="title" content="សិរីមង្គលអាពាហ៍ពិពាហ៍ លាបហេង និង រ៉ានី">
-  <meta name="description" content="សូមគោរពអញ្ជើញចូលរួមជាអធិបតីយភាព និងជាភ្ញៀវកិត្តិយស ក្នុងកម្មវិធីសិរីមង្គលអាពាហ៍ពិពាហ៍របស់យើងខ្ញុំ។">
+  <title>សិរីមង្គលពិធីភ្ជាប់ពាក្យ លាបហេង និង រ៉ានី</title>
+  <meta name="title" content="សិរីមង្គលពិធីភ្ជាប់ពាក្យ លាបហេង និង រ៉ានី">
+  <meta name="description" content="សូមគោរពអញ្ជើញចូលរួមជាអធិបតីយភាព និងជាភ្ញៀវកិត្តិយស ក្នុងកម្មវិធីសិរីមង្គលពិធីភ្ជាប់ពាក្យរបស់យើងខ្ញុំ។">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://we-made-it.vercel.app/">
-  <meta property="og:title" content="សិរីមង្គលអាពាហ៍ពិពាហ៍ លាបហេង និង រ៉ានី">
-  <meta property="og:description" content="សូមគោរពអញ្ជើញចូលរួមជាអធិបតីយភាព និងជាភ្ញៀវកិត្តិយស ក្នុងកម្មវិធីសិរីមង្គលអាពាហ៍ពិពាហ៍របស់យើងខ្ញុំ។">
+  <meta property="og:title" content="សិរីមង្គលពិធីភ្ជាប់ពាក្យ លាបហេង និង រ៉ានី">
+  <meta property="og:description" content="សូមគោរពអញ្ជើញចូលរួមជាអធិបតីយភាព និងជាភ្ញៀវកិត្តិយស ក្នុងកម្មវិធីសិរីមង្គលពិធីភ្ជាប់ពាក្យរបស់យើងខ្ញុំ។">
   <meta property="og:image" content="https://we-made-it.vercel.app/images/cph3.webp">
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:image" content="https://we-made-it.vercel.app/images/cph3.webp">
@@ -31,39 +31,29 @@
 }
 #opening.fade-out { opacity:0; pointer-events:none; }
 
-/* All layers stack absolutely inside #opening */
 #opening > .op-layer {
   position: absolute;
   inset: 0;
   pointer-events: none;
 }
 
-/* ── L1: Background landscape 1070×2000 (portrait) ── */
 #layer-bg {
   z-index: 1;
   background: url('images/lanscapeBackground.webp') center center / cover no-repeat;
 }
 
-/* ── L2: Central building 1200×857 (wide landscape) ──
-   Wide image, sit at bottom, stretch full width            */
-#layer-building {
-  z-index: 2;
-}
+#layer-building { z-index: 2; }
 #layer-building img {
   position: absolute;
-  bottom: 50px; /* Changed from 50px to 0 to sit truly at the bottom */
+  bottom: 50px;
   left: 0;
-  width: 100vw; /* Use viewport width to be safe */
-  height: 60vh; /* Give it a specific height area to fill */
-  object-fit: cover; /* Forces the image to fill the width */
+  width: 100vw;
+  height: 60vh;
+  object-fit: cover;
   object-position: bottom center; 
 }
 
-/* ── L3: Floral gate 1200×1955 (tall portrait) ──
-   Frame the full viewport like a doorway              */
-#layer-floralgate {
-  z-index: 3;
-}
+#layer-floralgate { z-index: 3; }
 #layer-floralgate img {
   position: absolute;
   top: 0; left: 50%;
@@ -73,7 +63,6 @@
   object-fit: contain;
 }
 
-/* ── L4: Lamp 410×570 (portrait) — centred top ── */
 #layer-lamp {
   z-index: 4;
   animation: lampSway 3s ease-in-out infinite;
@@ -84,7 +73,6 @@
   top: 50px;
   left: 50%;
   transform: translateX(-50%);
-  /* lamp is small — scale to ~18% viewport width */
   width: clamp(80px, 40vw, 200px);
   height: auto;
 }
@@ -93,8 +81,6 @@
   50%      { transform: rotate(1deg);  }
 }
 
-/* ── L5: Behind curtains 426×885 (portrait) ──
-   Hang from top, L and R, roughly 45% wide each   */
 #layer-curtains-behind { z-index:5; }
 .curtain-behind-left,
 .curtain-behind-right {
@@ -126,8 +112,6 @@
   75%     { transform: rotate(0.7deg) skewX(0.2deg); }
 }
 
-/* ── L6: Front curtain swag 1200×583 (wide) ──
-   Top of screen, full width, ~30% height         */
 #layer-curtains-front { z-index:6; }
 #layer-curtains-front img {
   position: absolute;
@@ -143,38 +127,33 @@
   75%     { transform: scaleX(0.995) translateY(1px); }
 }
 
-/* ── L7: Top corner florals 400×400 (square) ──
-   Hanging from top-left and top-right corners      */
 #layer-top-florals { z-index:7; }
 .floral-top-lb, .floral-top-rb{
   position: absolute;
-  margin-top: 20px;  /* Nudges it up to sit flush with the ceiling */
+  margin-top: 20px;
   width: clamp(120px, 80vw, 280px);
   height: auto;
   object-fit: contain;
 }
 .floral-top-lf, .floral-top-rf {
   position: absolute;
-  margin-top: -13%;  /* Nudges it up to sit flush with the ceiling */
+  margin-top: -13%;
   width: clamp(100px, 40vw, 320px);
   height: auto;
   object-fit: contain;
 }
 .floral-top-lb, .floral-top-lf {
   left: 0;
-  margin-left: -15%; /* Nudges the image left to hide transparent gap */
+  margin-left: -15%;
   transform-origin: top left;
 }
-
 .floral-top-rb, .floral-top-rf {
   right: 0;
-  margin-right: -15%; /* Nudges the image right */
+  margin-right: -15%;
   transform-origin: top right;
 }
-/* behind pair — slightly larger */
 .floral-top-lb { left:-2%;  transform-origin: top left;  animation: ftopL 7s ease-in-out infinite; }
 .floral-top-rb { right:-2%; transform-origin: top right; animation: ftopR 7s ease-in-out infinite; }
-/* front pair */
 .floral-top-lf { left:-1%;  transform-origin: top left;  animation: ftopL 5.5s ease-in-out infinite 0.5s; }
 .floral-top-rf { right:-1%; transform-origin: top right; animation: ftopR 5.5s ease-in-out infinite 0.5s; }
 @keyframes ftopL {
@@ -188,18 +167,11 @@
   75%     { transform: rotate(1deg)    translateY(2px); }
 }
 
-/* ── L8: Bottom florals ──
-   Corner pieces: 500×892 (tall portrait) → anchor bottom corners
-   Small accents: 200×200 or 200×356 → spread across bottom        */
 #layer-bottom-florals { z-index:8; }
-/* 1. General setup for all bottom florals */
 .floral-bot {
   position: absolute;
   object-fit: contain;
-  /* Remove 'bottom: 0' from here to avoid conflicts */
 }
-
-/* 2. Individual definitions (Sizing and Animation ONLY) */
 .floral-bot-lcb {
   left: 0;
   width: clamp(80px, 28vw, 260px);
@@ -207,7 +179,6 @@
   transform-origin: bottom left;
   animation: fbotL 3s ease-in-out infinite;
 }
-
 .floral-bot-lcf {
   left: 2%;
   width: clamp(60px, 25vw, 160px);
@@ -215,7 +186,6 @@
   transform-origin: bottom left;
   animation: fbotL 4.5s ease-in-out infinite 0.7s;
 }
-
 .floral-bot-rcb {
   right: 0;
   width: clamp(80px, 28vw, 260px);
@@ -223,7 +193,6 @@
   transform-origin: bottom right;
   animation: fbotR 5s ease-in-out infinite 0.2s;
 }
-
 .floral-bot-rcf {
   right: 2%;
   width: clamp(60px, 25vw, 160px);
@@ -231,20 +200,14 @@
   transform-origin: bottom right;
   animation: fbotR 4.5s ease-in-out infinite 1s;
 }
-
-/* 3. THE "NUDGE" - Put this AFTER the definitions above */
-/* This ensures -2% overrides any other bottom values */
 .floral-bot-lcb, .floral-bot-lcf {
   margin-left: -15px;
   bottom: -2%; 
 }
-
 .floral-bot-rcb, .floral-bot-rcf {
   margin-right: -15px;
-  bottom: -2%; /* Now this will definitely work */
+  bottom: -2%;
 }
-
-/* 4. Middle accents */
 .floral-bot-al, .floral-bot-ar {
   bottom: -3%;
   width: clamp(50px, 25vw, 140px);
@@ -253,7 +216,6 @@
 }
 .floral-bot-al { left: 18%; animation: fbotM 5.5s ease-in-out infinite 0.3s; }
 .floral-bot-ar { right: 18%; animation: fbotM 5.5s ease-in-out infinite 0.8s; }
-
 .floral-bot-mid {
   left: 50%;
   bottom: -10%;
@@ -263,7 +225,6 @@
   transform-origin: bottom center;
   animation: fbotMid 7s ease-in-out infinite;
 }
-
 @keyframes fbotL {
   0%,100% { transform: rotate(0deg)    translateY(0px);  }
   40%     { transform: rotate(-1.2deg) translateY(-4px); }
@@ -285,7 +246,6 @@
   80%     { transform: translateX(-50%) rotate(-0.3deg) translateY(-2px); }
 }
 
-/* ── Butterfly canvas ── */
 #op-bf-canvas {
   position: absolute;
   inset: 0;
@@ -294,7 +254,6 @@
   z-index: 9;
 }
 
-/* ── Centre text + button ── */
 .op-center {
   position: absolute;
   inset: 0;
@@ -306,57 +265,46 @@
   gap: 8px;
   padding: 20px;
   pointer-events: none;
-  /* push text down slightly so it sits inside the arch gate opening */
   padding-top: 18%;
 }
 .op-center > * { pointer-events: auto; }
 
-/* ── PRE-TITLE ── */
 .op-pre-title {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-size: clamp(10px, 2.2vw, 15px);
-  color: #fff1c1; /* Brightened for contrast */
+  color: #fff1c1;
   letter-spacing: 6px; 
   text-transform: uppercase;
-  /* Darker, wider shadow to separate from background */
   text-shadow: 0 4px 12px rgba(0,0,0,0.8); 
   animation: opFadeUp 1s ease 0.3s both;
 }
 
-/* ── MAIN TITLE (Khmer) ── */
 .op-title {
   font-family: Moul, serif;
   font-size: clamp(15px, 3.8vw, 24px);
-  /* Stronger Gradient */
   background: linear-gradient(to bottom, #ffffff 0%, #f0d898 40%, #b08000 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  /* Added a drop-shadow filter for better visibility on images */
   filter: drop-shadow(0 4px 8px rgba(0,0,0,0.9));
   line-height: 1.8;
   animation: opFadeUp 1s ease 0.5s both;
 }
 
-/* ── NAMES (The Stylish Focus) ── */
 .op-names {
-  /* Using Cormorant Garamond for high-fashion elegance */
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(32px, 9vw, 65px);
   font-weight: 700;
   text-transform: uppercase;
-  font-variant: small-caps; /* Adds a very stylish 'serif logo' feel */
-  
-  /* Stronger Gradient */
+  font-variant: small-caps;
   background: linear-gradient(to bottom, #ffffff 0%, #f0d898 40%, #b08000 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  /* Added a drop-shadow filter for better visibility on images */
   filter: drop-shadow(0 4px 8px rgba(0,0,0,0.9));
   line-height: 1.8;
-  animation: opFadeUp 1s ease 0.5s both;}
+  animation: opFadeUp 1s ease 0.5s both;
+}
 
-/* AMPERSAND (&) */
 .op-amp { 
   font-family: 'Cormorant Garamond', serif;
   font-style: italic; 
@@ -367,33 +315,25 @@
   filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
 }
 
-/* ── DATE ── */
 .op-date {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(12px, 2.6vw, 18px); /* Slightly larger for readability */
-  letter-spacing: 5px; /* More air between letters = more luxury */
-  font-weight: 700; /* Bolder weight helps visibility */
+  font-size: clamp(12px, 2.6vw, 18px);
+  letter-spacing: 5px;
+  font-weight: 700;
   margin-top: 15px;
   display: inline-block;
-  
-  /* Brightened Gradient for contrast */
   background: linear-gradient(to bottom, #ffffff 0%, #fff1c1 50%, #dfc880 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
   filter: drop-shadow(0 2px 2px rgba(0,0,0,1)) 
           drop-shadow(0 4px 12px rgba(0,0,0,0.9));
-
-  /* Add a very subtle dark glow behind the text block */
   background-color: rgba(0, 0, 0, 0.2);
   padding: 4px 20px;
   border-radius: 20px;
-  backdrop-filter: blur(4px); /* Blurs the background behind the text slightly */
-
+  backdrop-filter: blur(4px);
   animation: opFadeUp 1s ease 0.9s both;
 }
 
-/* ── RSVP BUTTON ── */
 .op-btn {
   margin-top: 14px;
   padding: 12px 34px;
@@ -411,7 +351,6 @@
 }
 .op-btn:hover { background:rgba(220,180,60,0.22); box-shadow:0 0 28px rgba(220,180,60,0.3); transform:scale(1.04); }
 
-/* ── DIVIDER ── */
 .op-divider {
   width: 150px; 
   height: 1.5px;
@@ -421,17 +360,11 @@
   animation: opFadeUp 1s ease 0.6s both;
 }
 .op-hint {
-
   font-family: Battambang, sans-serif;
-
   font-size: 10px;
-
   color: rgba(255, 215, 150, 0.719);
-
   letter-spacing: 1px;
-
   animation: hintPulse 2.5s ease-in-out infinite, opFadeUp 1s ease 1.3s both;
-
 }
 
 @keyframes hintPulse { 0%,100%{opacity:.3} 50%{opacity:.8} }
@@ -495,7 +428,6 @@ body::before {
 .groom-bridgeName { display:flex; justify-content:space-between; max-width:300px; margin:0 auto; gap:40px; }
 .groom-bridgeName h2 { font-family:Moul,sans-serif; font-size:18px; font-weight:500; margin:0; }
 
-/* Fix eventDate line-height bug — was 2px which squashed text */
 .eventDate { margin-top:30px; }
 .eventDate h6 { font-weight:500; font-family:Moul,sans-serif; font-size:13px; line-height:1.9; margin:0; }
 
@@ -536,17 +468,50 @@ body::before {
 .gallery-img { transition:transform .3s ease,box-shadow .3s ease; cursor:pointer; }
 .gallery-img:hover { transform:scale(1.02); box-shadow:0 10px 30px rgba(146,105,0,.15); }
 
-/* Lightbox */
-.lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85); z-index:99999; justify-content:center; align-items:center; padding:20px; }
+/* ── LIGHTBOX ── */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.85);
+  z-index: 99999;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
 .lightbox.open { display:flex; animation:lbFade .25s ease; }
 @keyframes lbFade{from{opacity:0}to{opacity:1}}
-.lightbox img { max-width:90vw; max-height:88vh; border-radius:12px; border:4px solid var(--pink); object-fit:contain; box-shadow:0 20px 60px rgba(0,0,0,.5); }
-.lightbox-close { position:fixed; top:18px; right:24px; font-size:36px; color:#fff; cursor:pointer; line-height:1; user-select:none; z-index:100000; background:rgba(0,0,0,.4); width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+.lightbox img {
+  max-width: 90vw;
+  max-height: 88vh;
+  border-radius: 12px;
+  border: 4px solid var(--pink);
+  object-fit: contain;
+  box-shadow: 0 20px 60px rgba(0,0,0,.5);
+  /* prevent click on image itself from closing */
+  pointer-events: none;
+}
+.lightbox-close {
+  position: fixed;
+  top: 18px; right: 24px;
+  font-size: 36px;
+  color: #fff;
+  cursor: pointer;
+  line-height: 1;
+  user-select: none;
+  z-index: 100000;
+  background: rgba(0,0,0,.4);
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .lightbox-close:hover { background:rgba(234,191,185,.7); }
 
 /* ══════════════════════════════════
-   WISHES SECTION - ELEGANT BLUR
-   ══════════════════════════════════ */
+   WISHES SECTION - SLIDING CAROUSEL
+══════════════════════════════════ */
 #wishes-section {
   padding: 60px 0;
   border-radius: 10px;
@@ -557,110 +522,172 @@ body::before {
   overflow: hidden;
 }
 
-/* ✨ floating light effect */
 #wishes-section::before {
   content: "";
   position: absolute;
-  width: 500px;
-  height: 500px;
+  width: 500px; height: 500px;
   background: radial-gradient(circle, rgba(234,191,185,0.25), transparent 70%);
-  top: -100px;
-  left: -100px;
-  z-index: 0;
-}
-
-#wishes-section::after {
-  content: "";
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(176,128,0,0.15), transparent 70%);
-  bottom: -100px;
-  right: -100px;
+  top: -100px; left: -100px;
   z-index: 0;
   pointer-events: none;
 }
-/* Floating Premium Glass Card */
-.wish-card-premium {
+#wishes-section::after {
+  content: "";
+  position: absolute;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(176,128,0,0.15), transparent 70%);
+  bottom: -100px; right: -100px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Carousel viewport */
+.wish-carousel-wrap {
   position: relative;
   width: 95%;
-  height: 220px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   max-width: 900px;
-  margin: 0 auto 40px;
-  padding: 20px 10px;
+  margin: 0 auto 24px;
+  z-index: 2;
+}
 
-  background: rgba(255, 255, 255, 0.55);
+/* The glass card frame — fixed height, clips overflow */
+.wish-card-premium {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.55);
   backdrop-filter: blur(18px);
-
   border-radius: 30px;
   border: 1px solid #EABFB9;
-
   box-shadow: 0 25px 60px rgba(0,0,0,0.08);
-
-  z-index: 2;
-  transition: 0.4s ease;
+  cursor: grab;
+  user-select: none;
+  touch-action: pan-y;  /* allow vertical scroll but handle horizontal ourselves */
+}
+.wish-card-premium.frozen {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(146,105,0,0.25), 0 25px 60px rgba(0,0,0,0.08);
 }
 
-/* 🌸 soft glow when hover */
-.wish-card-premium:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 35px 80px rgba(146,105,0,0.15);
+/* Frozen hint overlay */
+.wish-frozen-hint {
+  position: absolute;
+  top: 12px; left: 50%; transform: translateX(-50%);
+  background: rgba(146,105,0,0.85);
+  color: #fff;
+  font-family: Battambang, sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  padding: 3px 14px;
+  border-radius: 20px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 5;
+  white-space: nowrap;
 }
-/* wish-content */
-.wish-content {
+.wish-card-premium.frozen .wish-frozen-hint { opacity: 1; }
+
+/* The inner slider track — holds all slides side by side */
+.wish-slider-track {
   display: flex;
-  flex-direction: column;   /* VERY IMPORTANT */
-  align-items: stretch;     /* allows full width */
-  justify-content: flex-start;
   height: 100%;
-  width: 100%;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
 }
-/* Typography Enhancements */
-.author-top {
+
+/* Each individual slide */
+.wish-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 30px 22px;
+}
+
+.wish-slide .author-top {
   font-family: Moulpali, sans-serif;
   font-size: 13px;
   color: #926900;
-  flex-shrink: 0;
   margin-bottom: 12px;
   opacity: 0.9;
+  flex-shrink: 0;
 }
-#wish-text {
+
+.wish-slide .wish-text {
   font-family: 'Noto Serif Khmer', serif;
-  font-size: 16px;
+  font-size: 15px;
   color: #4a3728;
   line-height: 1.8;
   text-align: center;
-  flex: 1;
-  width: 100%;
   overflow-y: auto;
+  max-height: 120px;
   white-space: pre-line;
   word-break: break-word;
-  padding: 0 20px;
-  position: relative;   /* needed for quotes */
+  width: 100%;
+}
+.wish-slide .wish-text::-webkit-scrollbar { width: 3px; }
+.wish-slide .wish-text::-webkit-scrollbar-thumb { background: rgba(146,105,0,0.3); border-radius: 3px; }
+
+/* Dot indicators */
+.wish-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 2;
+}
+.wish-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: rgba(146,105,0,0.25);
+  transition: background 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+.wish-dot.active {
+  background: var(--gold);
+  transform: scale(1.35);
 }
 
-#wish-text::-webkit-scrollbar {
-  width: 4px;
+/* Hold hint */
+.wish-hold-hint {
+  font-family: Battambang, sans-serif;
+  font-size: 10px;
+  color: rgba(146,105,0,0.55);
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+  animation: hintPulse 3s ease-in-out infinite;
 }
 
-#wish-text::-webkit-scrollbar-thumb {
-  background: rgba(146,105,0,0.4);
-  border-radius: 5px;
+/* Delete button (admin) */
+.delete-icon {
+  position: absolute;
+  top: 14px; right: 14px;
+  background: rgba(255,255,255,0.5);
+  border: none;
+  color: #888;
+  cursor: pointer;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  transition: all 0.3s ease;
+  opacity: 0;
+  z-index: 6;
 }
+.wish-card-premium:hover .delete-icon { opacity: 1; }
+.delete-icon:hover { background: #ffeded; color: #e06018; }
 
-#wish-text::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-#wish-author {
-  transition: opacity 0.4s ease;
-}
-/* ══════════════════════════════════
-   MODERN FROSTED FORM
-   ══════════════════════════════════ */
+/* FORM */
 .wish-form-modern {
   max-width: 500px;
   margin: 0 auto;
@@ -668,54 +695,22 @@ body::before {
   position: relative;
   z-index: 2;
 }
-
 .wish-form-modern input,
 .wish-form-modern textarea {
   width: 100%;
   padding: 14px 18px;
   margin-bottom: 15px;
-
   background: rgba(255,255,255,0.7);
   border: 1px solid #EABFB9;
   border-radius: 12px;
-
   font-family: Battambang;
   font-size: 14px;
+  outline: none;
 }
-
 .wish-form-modern input:focus,
 .wish-form-modern textarea:focus {
   border-color: #926900;
   box-shadow: 0 5px 15px rgba(146,105,0,0.1);
-}
-
-/* Subtle Trash Icon Improvement */
-.delete-icon {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: rgba(255, 255, 255, 0.5);
-  border: none;
-  color: #888;
-  cursor: pointer;
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.8rem;
-  transition: all 0.3s ease;
-  opacity: 0;
-}
-
-.wish-card-premium:hover .delete-icon {
-  opacity: 1;
-}
-
-.delete-icon:hover {
-  background: #ffeded;
-  color: #e06018;
 }
 
 /* Music player */
@@ -731,8 +726,7 @@ body::before {
 #yt-frame { position:fixed; top:-9999px; left:-9999px; width:1px; height:1px; }
 
 @media(max-width:760px){
-  .wrap { /* 50px top/bottom, 20px left/right */
-    padding: 50px 20px; }
+  .wrap { padding: 50px 20px; }
   footer { padding: 0px 20px 40px; }
   .gallery-row-vertical .gallery-img { max-width:160px; }
   .music-player { bottom:16px; right:12px; padding:6px 12px 6px 8px; }
@@ -747,65 +741,42 @@ body::before {
      OPENING  (8 layers)
 ══════════════════════════════════ -->
 <div id="opening">
-
-  <!-- L1: Landscape background -->
   <div class="op-layer" id="layer-bg"></div>
-
-  <!-- L2: Central building (1200×857 wide) — sits at bottom -->
   <div class="op-layer" id="layer-building">
     <img src="images/centralBuilding.webp" alt="">
   </div>
-
-  <!-- L3: Floral gate (1200×1955 tall) — full height frame -->
   <div class="op-layer" id="layer-floralgate">
     <img src="images/Floralgate.png" alt="">
   </div>
-
-  <!-- L4: Lamp (410×570) — small, centred top, swaying -->
   <div class="op-layer" id="layer-lamp">
     <img src="images/topLampBehind.webp" alt="">
   </div>
-
-  <!-- L5: Side curtains behind (426×885 each) -->
   <div class="op-layer" id="layer-curtains-behind">
     <img src="images/topCurtainsLeftBehind.webp"  class="curtain-behind-left"  alt="">
     <img src="images/topCurtainsRightBehind.webp" class="curtain-behind-right" alt="">
   </div>
-
-  <!-- L6: Front curtain swag (1200×583 wide) -->
   <div class="op-layer" id="layer-curtains-front">
     <img src="images/topCurtainfront.webp" alt="">
   </div>
-
-  <!-- L7: Top corner florals (all 400×400) -->
   <div class="op-layer" id="layer-top-florals">
     <img src="images/floralTopLeftbehind.webp"  class="floral-top-lb" alt="">
     <img src="images/floralTopRightbehind.webp" class="floral-top-rb" alt="">
     <img src="images/floralTopLeftFront.webp"   class="floral-top-lf" alt="">
     <img src="images/floralTopRightFront.webp"  class="floral-top-rf" alt="">
   </div>
-
-  <!-- L8: Bottom florals -->
   <div class="op-layer" id="layer-bottom-florals">
-    <!-- behind corners first (500×892) -->
     <img src="images/floralBottomLeftCornerbehind.webp"  class="floral-bot floral-bot-lcb" alt="">
     <img src="images/floralBottomRightCornerbehind.webp" class="floral-bot floral-bot-rcb" alt="">
-    <!-- small accents -->
     <img src="images/floralBottomAfterLeft.webp"         class="floral-bot floral-bot-al"  alt="">
     <img src="images/floralBottomMid.webp"               class="floral-bot floral-bot-mid" alt="">
     <img src="images/floralBottomAfterRight.webp"        class="floral-bot floral-bot-ar"  alt="">
-    <!-- front corners on top (200×200) -->
     <img src="images/floralBottomleftCornerFront.webp"   class="floral-bot floral-bot-lcf" alt="">
     <img src="images/floralBottomRightCornerFront.webp"  class="floral-bot floral-bot-rcf" alt="">
   </div>
-
-  <!-- Butterfly canvas -->
   <canvas id="op-bf-canvas"></canvas>
-
-  <!-- Text + button -->
   <div class="op-center">
-    <div class="op-pre-title">Wedding Invitation</div>
-    <div class="op-title">សិរីមង្គលអាពាហ៍ពិពាហ៍</div>
+    <div class="op-pre-title">Engagement Invitation</div>
+    <div class="op-title">សិរីមង្គលពិធីភ្ជាប់ពាក្យ</div>
     <div class="op-divider"></div>
     <div class="op-names">លាបហេង <span class="op-amp">&amp;</span> រ៉ានី</div>
     <div class="op-divider"></div>
@@ -813,7 +784,6 @@ body::before {
     <button class="op-btn" onclick="openInvitation()">សូមបើកលិខិតអញ្ជើញ ✦</button>
     <div class="op-hint">Tap to open your invitation</div>
   </div>
-
 </div>
 
 <!-- ══════════════════════════════════
@@ -843,7 +813,7 @@ body::before {
 
   <div class="wrap">
     <header style="padding-top:15px;">
-      <div class="mono-Main-Tittle">សិរីមង្គលអាពាហ៍ពិពាហ៍</div>
+      <div class="mono-Main-Tittle">សិរីមង្គលពិធីភ្ជាប់ពាក្យ</div>
     </header>
     <div class="groom-parentName">
       <div><p>លោក​<br>លោកស្រី</p></div>
@@ -851,7 +821,7 @@ body::before {
     </div>
     <div>
       <h4 class="invite">សូមគោរពអញ្ជើញ</h4>
-      <p class="sub-invited">សូមគោរពអញ្ជើញ ឯកឧត្ដម អ្នកឧកញ៉ា លោកឧកញ៉ា លោកជំទាវ លោក លោកស្រី អ្នកនាងកញ្ញា អញ្ជើញចូលរួមជាអធិបតីយភាព និងជាភ្ញៀវកិត្តិយស ក្នុងកម្មវិធីសិរីមង្គលអាពាហ៍ពិពាហ៍ កូនប្រុស កូនស្រី របស់យើងខ្ញុំ។</p>
+      <p class="sub-invited">សូមគោរពអញ្ជើញ ឯកឧត្ដម អ្នកឧកញ៉ា លោកឧកញ៉ា លោកជំទាវ លោក លោកស្រី អ្នកនាងកញ្ញា អញ្ជើញចូលរួមជាអធិបតីយភាព និងជាភ្ញៀវកិត្តិយស ក្នុងកម្មវិធីសិរីមង្គលពិធីភ្ជាប់ពាក្យ កូនប្រុស កូនស្រី របស់យើងខ្ញុំ។</p>
     </div>
     <div class="groom-bridge">
       <div class="groom-bridgeTitle"><h2>កូនប្រុស</h2><h2>កូនស្រី</h2></div>
@@ -861,7 +831,7 @@ body::before {
     <div class="eventDate">
       <h6>ដែលនឹងប្រព្រឹត្តទៅនៅ</h6>
       <h6>ថ្ងៃព្រហស្បតិ៍ ទី២៧ ខែឧសភា ឆ្នាំ២០២៦</h6>
-      <h6>ស្ថិតនៅ គេហដ្ឋានខាងប្រុស ភូមិ៣ សង្កាត់អុឡាំពិក</h6>
+      <h6>ស្ថិតនៅ គេហដ្ឋានខាងប្រុស ភូមិ៣ សង្កាត់អូឡាំពិក</h6>
       <h6>ខ័ណ្ឌបឺងកេងកង១ រាជធានីភ្នំពេញ ដោយមេត្រីភាព។</h6>
       <h6>សូមអរគុណ!</h6>
     </div>
@@ -876,293 +846,476 @@ body::before {
           <span class="qr-corner bl"></span><span class="qr-corner br"></span>
           <img src="images/eventMapQr.png" alt="Google Maps QR Code">
         </a>
-        <div class="qr-tap-hint"><span>📍</span><span>Tap to open Google Maps</span></div>
+        <div class="qr-tap-hint"><span>Tap to open Google Maps</span></div>
       </div>
     </div>
 
     <div class="gallery-section">
-      <div class="gallery-section-title">រូបភាព</div>
-      <div class="gallery-row-horizontal"><img src="images/cph2.webp" alt="" class="gallery-img fade-in" loading="lazy" onclick="openLightbox(this)"></div>
+      <div class="gallery-section-title">កម្រងរូបភាព</div>
+      <div class="gallery-row-horizontal"><img src="images/cph2.webp" alt="" class="gallery-img fade-in" loading="lazy"></div>
       <div class="gallery-row-vertical">
-        <img src="images/cpv1.webp" alt="" class="gallery-img slide-left" loading="lazy" onclick="openLightbox(this)">
-        <img src="images/cpv2.webp" alt="" class="gallery-img slide-right" loading="lazy" onclick="openLightbox(this)">
+        <img src="images/cpv1.webp" alt="" class="gallery-img slide-left" loading="lazy">
+        <img src="images/cpv2.webp" alt="" class="gallery-img slide-right" loading="lazy">
       </div>
-      <div class="gallery-row-horizontal"><img src="images/cph1.webp" alt="" class="gallery-img fade-in" loading="lazy" onclick="openLightbox(this)"></div>
+      <div class="gallery-row-horizontal"><img src="images/cph1.webp" alt="" class="gallery-img fade-in" loading="lazy"></div>
       <div class="gallery-row-vertical">
-        <img src="images/cpv3.webp" alt="" class="gallery-img slide-left" loading="lazy" onclick="openLightbox(this)">
-        <img src="images/cpv4.webp" alt="" class="gallery-img slide-right" loading="lazy" onclick="openLightbox(this)">
+        <img src="images/cpv3.webp" alt="" class="gallery-img slide-left" loading="lazy">
+        <img src="images/cpv4.webp" alt="" class="gallery-img slide-right" loading="lazy">
       </div>
-      <div class="gallery-row-horizontal"><img src="images/cph3.webp" alt="" class="gallery-img fade-in" loading="lazy" onclick="openLightbox(this)"></div>
-      <div class="gallery-row-horizontal"><img src="images/bh1.webp" alt="" class="gallery-img fade-in" loading="lazy" onclick="openLightbox(this)"></div>
-      <div class="gallery-row-horizontal"><img src="images/cph4.webp" alt="" class="gallery-img fade-in" loading="lazy" onclick="openLightbox(this)"></div>
+      <div class="gallery-row-horizontal"><img src="images/cph3.webp" alt="" class="gallery-img fade-in" loading="lazy"></div>
+      <div class="gallery-row-horizontal"><img src="images/bh1.webp" alt="" class="gallery-img fade-in" loading="lazy"></div>
+      <div class="gallery-row-horizontal"><img src="images/cph4.webp" alt="" class="gallery-img fade-in" loading="lazy"></div>
       <div class="gallery-row-vertical">
-        <img src="images/cpv5.webp" alt="" class="gallery-img slide-left" loading="lazy" onclick="openLightbox(this)">
-        <img src="images/gv1.webp"  alt="" class="gallery-img slide-right" loading="lazy" onclick="openLightbox(this)">
+        <img src="images/cpv5.webp" alt="" class="gallery-img slide-left" loading="lazy">
+        <img src="images/gv1.webp"  alt="" class="gallery-img slide-right" loading="lazy">
       </div>
-      <div class="gallery-row-single-vertical"><img src="images/cpv6.webp" alt="" class="gallery-img fade-in" loading="lazy" onclick="openLightbox(this)"></div>
-      <div class="gallery-row-horizontal"><img src="images/cpv7.webp" alt="" class="gallery-img fade-in" loading="lazy" onclick="openLightbox(this)"></div>
+      <div class="gallery-row-single-vertical"><img src="images/cpv6.webp" alt="" class="gallery-img fade-in" loading="lazy"></div>
+      <div class="gallery-row-horizontal"><img src="images/cpv7.webp" alt="" class="gallery-img fade-in" loading="lazy"></div>
       <div class="gallery-row-vertical">
-        <img src="images/cpv7.webp" alt="" class="gallery-img slide-left" loading="lazy" onclick="openLightbox(this)">
-        <img src="images/bv1.webp"  alt="" class="gallery-img slide-right" loading="lazy" onclick="openLightbox(this)">
+        <img src="images/cpv7.webp" alt="" class="gallery-img slide-left" loading="lazy">
+        <img src="images/bv1.webp"  alt="" class="gallery-img slide-right" loading="lazy">
       </div>
-      <div class="gallery-row-single-vertical"><img src="images/cpv8.webp" alt="" class="gallery-img fade-in" loading="lazy" onclick="openLightbox(this)"></div>
-      <div class="gallery-row-horizontal"><img src="images/cph5.webp" alt="" class="gallery-img fade-in" loading="lazy" onclick="openLightbox(this)"></div>
+      <div class="gallery-row-single-vertical"><img src="images/cpv8.webp" alt="" class="gallery-img fade-in" loading="lazy"></div>
+      <div class="gallery-row-horizontal"><img src="images/cph5.webp" alt="" class="gallery-img fade-in" loading="lazy"></div>
       <div class="gallery-row-vertical">
-        <img src="images/gv2.webp" alt="" class="gallery-img slide-left" loading="lazy" onclick="openLightbox(this)">
-        <img src="images/bv2.webp" alt="" class="gallery-img slide-right" loading="lazy" onclick="openLightbox(this)">
+        <img src="images/gv2.webp" alt="" class="gallery-img slide-left" loading="lazy">
+        <img src="images/bv2.webp" alt="" class="gallery-img slide-right" loading="lazy">
       </div>
-      <div class="gallery-row-horizontal"><img src="images/cpv9.webp" alt="" class="gallery-img fade-in" loading="lazy" onclick="openLightbox(this)"></div>
+      <div class="gallery-row-horizontal"><img src="images/cpv9.webp" alt="" class="gallery-img fade-in" loading="lazy"></div>
     </div>
+
+    <!-- ══════════════════════
+         WISHES SECTION
+    ══════════════════════ -->
     <section id="wishes-section">
-      <h2 style="padding-bottom: 10px;" ​​​​class="op-title">សារជូនពរ</h2>
-      
-      <div id="wishes-container">
-        <div id="wishes-display" class="wish-card-premium">
-          <button id="delete-wish-btn" class="delete-icon" onclick="handleDelete()">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <h2 style="padding-bottom:20px;" class="op-title">សារជូនពរ</h2>
+
+      <!-- Carousel -->
+      <div class="wish-carousel-wrap">
+        <div class="wish-card-premium" id="wishCard">
+          <!-- Frozen hint -->
+          <div class="wish-frozen-hint">Hold to freeze &amp; screenshot</div>
+
+          <!-- Admin delete -->
+          <button class="delete-icon" id="delete-wish-btn" onclick="handleDelete()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="3 6 5 6 21 6"></polyline>
               <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
             </svg>
           </button>
 
-          <div class="wish-content">
-            <span id="wish-author" class="author-top"></span>
-            <p id="wish-text"> Be the first to send your blessing</p>
-          </div>
+          <!-- Slider track (slides inserted by JS) -->
+          <div class="wish-slider-track" id="wishTrack"></div>
         </div>
       </div>
 
+      <!-- Dot indicators -->
+      <div class="wish-dots" id="wishDots"></div>
+
+      <!-- Hold hint -->
+      <div class="wish-hold-hint"> Hold to freeze • Swipe to browse</div>
+
+      <!-- Form -->
       <div class="wish-form-modern">
         <input type="text" id="guest-name" placeholder="Your Name" required>
         <textarea id="guest-message" placeholder="Write your heartfelt wish here..." rows="3" required></textarea>
-        <button onclick="submitWish()" class="op-btn" >ផ្ញើសារ</button>
+        <button onclick="submitWish()" class="op-btn">ផ្ញើសារ</button>
       </div>
     </section>
 
-    <footer><p>Made with Senghou</p></footer>
+    <footer style="padding-top:40px;"><p>Made with Senghou</p></footer>
   </div>
 
-  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-    <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightboxClose">✕</span>
     <img id="lightbox-img" src="" alt="">
   </div>
 </div>
 
 <script type="module">
-  /* ══════════════════════════════════
-     1. YOUTUBE API DYNAMIC LOAD
-  ══════════════════════════════════ */
-  // DO NOT use <script src="..."> in the HTML. Use this instead:
-  if (!window.YT) {
-    var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-  }
+/* ══════════════════════════════════
+   1. YOUTUBE API
+══════════════════════════════════ */
+if (!window.YT) {
+  const tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  document.head.appendChild(tag);
+}
 
-  /* ══════════════════════════════════
-     2. FIREBASE SETUP
-  ══════════════════════════════════ */
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+/* ══════════════════════════════════
+   2. FIREBASE SETUP
+══════════════════════════════════ */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyD5IALw4WeWOf3awXeKR_btm3GHLbCVD_w",
-    authDomain: "weddinginvitation-7bcd0.firebaseapp.com",
-    databaseURL: "https://weddinginvitation-7bcd0-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "weddinginvitation-7bcd0",
-    storageBucket: "weddinginvitation-7bcd0.firebasestorage.app",
-    messagingSenderId: "1030339547742",
-    appId: "1:1030339547742:web:15707ff3fcda0fc543dacf",
-    measurementId: "G-LQFHNDVW1C"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
-  const wishesRef = ref(db, 'wishes');
-
-  /* ══════════════════════════════════
-     3. GLOBAL INITIALIZATION
-  ══════════════════════════════════ */
-  window.ytPlayer = null;
-  window.ytReady = false;
-  window.isPlaying = false;
-
-  // This MUST be on window to be seen by the external YouTube script
-  window.onYouTubeIframeAPIReady = function() {
-    console.log("YouTube API Ready Signal Received");
-    
-    const frameTarget = document.getElementById('yt-frame');
-    if (!frameTarget) {
-        console.error("Critical: #yt-frame not found in HTML.");
-        return;
-    }
-
-    window.ytPlayer = new YT.Player('yt-frame', {
-        videoId: 'Mn_qLC7_ueA',
-        playerVars: { 
-            autoplay: 0, 
-            loop: 1, 
-            playlist: 'Mn_qLC7_ueA', 
-            controls: 0, 
-            disablekb: 1, 
-            fs: 0, 
-            modestbranding: 1,
-            origin: window.location.origin 
-        },
-        events: {
-            onReady: () => { 
-                console.log("YouTube Player Loaded Successfully");
-                window.ytReady = true; 
-            },
-            onStateChange: (e) => {
-                window.isPlaying = (e.data === YT.PlayerState.PLAYING);
-                const btn = document.getElementById('musicBtn');
-                if(btn) btn.textContent = window.isPlaying ? '⏸' : '▶';
-            }
-        }
-    });
-  };
-  window.openInvitation = function() {
-    const opening = document.getElementById('opening');
-    const invitation = document.getElementById('invitation');
-
-    // FIX: Start music IMMEDIATELY before the timeout for iOS/Mobile
-    if (window.ytReady && window.ytPlayer) {
-      window.ytPlayer.unMute(); 
-      window.ytPlayer.setVolume(35);
-      window.ytPlayer.playVideo();
-    }
-
-    opening.classList.add('fade-out');
-    if (window._killOpeningBF) window._killOpeningBF();
-
-    setTimeout(() => {
-      opening.style.display = 'none';
-      document.body.style.overflow = 'auto';
-      invitation.classList.add('visible');
-      // Initialize other effects
-      if (typeof initScrollAnim === 'function') initScrollAnim();
-      if (typeof initInvFX === 'function') initInvFX();
-    }, 1800);
-  };
-
-   window.toggleMusic = function() {
-    // If API isn't ready, we can't do anything yet
-    if (!window.ytReady || !window.ytPlayer) {
-        console.warn("YouTube Player not ready yet.");
-        return;
-    }
-
-    // Check actual player state from the API
-    const state = window.ytPlayer.getPlayerState();
-    
-    if (state === YT.PlayerState.PLAYING) {
-        window.ytPlayer.pauseVideo();
-    } else {
-        // Essential for Mobile: Ensure unmuted and set volume right before playing
-        window.ytPlayer.unMute();
-        window.ytPlayer.setVolume(35);
-        
-        // Use a promise-style check if possible, or just force play
-        window.ytPlayer.playVideo();
-    }
+const firebaseConfig = {
+  apiKey: "AIzaSyD5IALw4WeWOf3awXeKR_btm3GHLbCVD_w",
+  authDomain: "weddinginvitation-7bcd0.firebaseapp.com",
+  databaseURL: "https://weddinginvitation-7bcd0-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "weddinginvitation-7bcd0",
+  storageBucket: "weddinginvitation-7bcd0.firebasestorage.app",
+  messagingSenderId: "1030339547742",
+  appId: "1:1030339547742:web:15707ff3fcda0fc543dacf",
+  measurementId: "G-LQFHNDVW1C"
 };
 
-  /* ══════════════════════════════════
-      4. WISH SYSTEM LOGIC (Fixed)
-   ══════════════════════════════════ */
-let allWishes = [];          // FIX 1: Start as an empty array
-let currentWishIndex = 0;    // FIX 2: Define the index variable
-let currentWishId = null;    
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const wishesRef = ref(db, 'wishes');
 
-// Listen for data
+/* ══════════════════════════════════
+   3. YOUTUBE PLAYER
+══════════════════════════════════ */
+window.ytPlayer = null;
+window.ytReady = false;
+window.isPlaying = false;
+
+window.onYouTubeIframeAPIReady = function() {
+  window.ytPlayer = new YT.Player('yt-frame', {
+    videoId: 'Mn_qLC7_ueA',
+    playerVars: { autoplay:0, loop:1, playlist:'Mn_qLC7_ueA', controls:0, disablekb:1, fs:0, modestbranding:1, origin:window.location.origin },
+    events: {
+      onReady: () => { window.ytReady = true; },
+      onStateChange: (e) => {
+        window.isPlaying = (e.data === YT.PlayerState.PLAYING);
+        const btn = document.getElementById('musicBtn');
+        if (btn) btn.textContent = window.isPlaying ? '⏸' : '▶';
+      }
+    }
+  });
+};
+
+window.openInvitation = function() {
+  const opening = document.getElementById('opening');
+  const invitation = document.getElementById('invitation');
+  if (window.ytReady && window.ytPlayer) {
+    window.ytPlayer.unMute();
+    window.ytPlayer.setVolume(35);
+    window.ytPlayer.playVideo();
+  }
+  opening.classList.add('fade-out');
+  if (window._killOpeningBF) window._killOpeningBF();
+  setTimeout(() => {
+    opening.style.display = 'none';
+    document.body.style.overflow = 'auto';
+    invitation.classList.add('visible');
+    initScrollAnim();
+    initInvFX();
+    initWishCarousel();
+  }, 1800);
+};
+
+window.toggleMusic = function() {
+  if (!window.ytReady || !window.ytPlayer) return;
+  const state = window.ytPlayer.getPlayerState();
+  if (state === YT.PlayerState.PLAYING) {
+    window.ytPlayer.pauseVideo();
+  } else {
+    window.ytPlayer.unMute();
+    window.ytPlayer.setVolume(35);
+    window.ytPlayer.playVideo();
+  }
+};
+
+/* ══════════════════════════════════
+   4. WISH CAROUSEL
+══════════════════════════════════ */
+let allWishes = [];
+let carouselIndex = 0;
+let autoTimer = null;
+let isFrozen = false;
+let carouselReady = false;
+
+// Listen for Firebase data
 onValue(wishesRef, (snapshot) => {
   const data = snapshot.val();
   allWishes = data ? Object.entries(data) : [];
-  
-  // FIX 3: Only trigger the first display if the screen is currently empty
-  const display = document.getElementById('wish-text');
-  if (allWishes.length > 0 && (!display.textContent || display.textContent === "Loading wishes...")) {
-    updateWishDisplay();
-  }
+  if (carouselReady) rebuildSlides();
 });
+
+function initWishCarousel() {
+  carouselReady = true;
+  rebuildSlides();
+  setupCardInteraction();
+}
+
+function rebuildSlides() {
+  const track = document.getElementById('wishTrack');
+  const dotsEl = document.getElementById('wishDots');
+  if (!track || !dotsEl) return;
+
+  // Save current index within bounds
+  if (carouselIndex >= allWishes.length) carouselIndex = 0;
+
+  // Build slides
+  track.innerHTML = '';
+  if (allWishes.length === 0) {
+    track.innerHTML = `
+      <div class="wish-slide">
+        <p class="wish-text" style="opacity:0.5;">Be the first to send your blessing 🙏</p>
+      </div>`;
+    dotsEl.innerHTML = '';
+    return;
+  }
+
+  allWishes.forEach(([id, wish]) => {
+    const slide = document.createElement('div');
+    slide.className = 'wish-slide';
+    slide.dataset.id = id;
+    slide.innerHTML = `
+      <span class="author-top">${escHtml(wish.name)}</span>
+      <p class="wish-text">${escHtml(wish.message)}</p>`;
+    track.appendChild(slide);
+  });
+
+  // Build dots
+  dotsEl.innerHTML = '';
+  allWishes.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'wish-dot' + (i === carouselIndex ? ' active' : '');
+    dot.onclick = () => goToSlide(i);
+    dotsEl.appendChild(dot);
+  });
+
+  // Set initial position without animation
+  setSlideImmediate(carouselIndex);
+
+  // Start auto rotation
+  startAutoSlide();
+}
+
+function escHtml(str) {
+  return String(str)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function setSlideImmediate(index) {
+  const track = document.getElementById('wishTrack');
+  if (!track) return;
+  track.style.transition = 'none';
+  track.style.transform = `translateX(-${index * 100}%)`;
+}
+
+function goToSlide(index, animated = true) {
+  const track = document.getElementById('wishTrack');
+  const dotsEl = document.getElementById('wishDots');
+  if (!track) return;
+
+  carouselIndex = ((index % allWishes.length) + allWishes.length) % allWishes.length;
+
+  if (animated) {
+    track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+  } else {
+    track.style.transition = 'none';
+  }
+  track.style.transform = `translateX(-${carouselIndex * 100}%)`;
+
+  // Update dots
+  if (dotsEl) {
+    dotsEl.querySelectorAll('.wish-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === carouselIndex);
+    });
+  }
+
+  // Update delete button's target
+  if (allWishes[carouselIndex]) {
+    window._currentWishId = allWishes[carouselIndex][0];
+  }
+}
+
+function startAutoSlide() {
+  stopAutoSlide();
+  if (allWishes.length <= 1) return;
+  autoTimer = setInterval(() => {
+    if (!isFrozen) goToSlide(carouselIndex + 1);
+  }, 5000);
+}
+
+function stopAutoSlide() {
+  if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+}
+
+function setupCardInteraction() {
+  const card = document.getElementById('wishCard');
+  if (!card) return;
+
+  let holdTimer = null;
+  let touchStartX = 0;
+  let touchStartTime = 0;
+  let isDragging = false;
+
+  // ── MOUSE: hold to freeze ──
+  card.addEventListener('mousedown', () => {
+    holdTimer = setTimeout(() => freeze(), 400);
+  });
+  card.addEventListener('mouseup', () => {
+    clearTimeout(holdTimer);
+    if (isFrozen) unfreeze();
+  });
+  card.addEventListener('mouseleave', () => {
+    clearTimeout(holdTimer);
+    if (isFrozen) unfreeze();
+  });
+
+  // ── TOUCH: hold to freeze + swipe to navigate ──
+  card.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartTime = Date.now();
+    isDragging = false;
+    holdTimer = setTimeout(() => freeze(), 500);
+  }, { passive: true });
+
+  card.addEventListener('touchmove', (e) => {
+    const dx = Math.abs(e.touches[0].clientX - touchStartX);
+    if (dx > 8) {
+      isDragging = true;
+      clearTimeout(holdTimer);
+    }
+  }, { passive: true });
+
+  card.addEventListener('touchend', (e) => {
+    clearTimeout(holdTimer);
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dt = Date.now() - touchStartTime;
+
+    if (isFrozen) {
+      // Unfreeze on release (unless user is actually swiping)
+      if (!isDragging) {
+        unfreeze();
+        return;
+      }
+      unfreeze();
+    }
+
+    // Swipe navigation
+    if (isDragging && Math.abs(dx) > 40 && dt < 500) {
+      if (dx < 0) goToSlide(carouselIndex + 1);
+      else goToSlide(carouselIndex - 1);
+    }
+  }, { passive: true });
+
+  // Click dots = handled inline already
+}
+
+function freeze() {
+  isFrozen = true;
+  stopAutoSlide();
+  const card = document.getElementById('wishCard');
+  if (card) card.classList.add('frozen');
+}
+
+function unfreeze() {
+  isFrozen = false;
+  const card = document.getElementById('wishCard');
+  if (card) card.classList.remove('frozen');
+  startAutoSlide();
+}
 
 window.submitWish = function() {
   const nameInput = document.getElementById('guest-name');
   const messageInput = document.getElementById('guest-message');
-  
-  if (nameInput.value && messageInput.value) {
-    push(wishesRef, { 
-      name: nameInput.value, 
-      message: messageInput.value, 
-      timestamp: Date.now() 
-    })
-    .then(() => {
+  if (nameInput.value.trim() && messageInput.value.trim()) {
+    push(wishesRef, {
+      name: nameInput.value.trim(),
+      message: messageInput.value.trim(),
+      timestamp: Date.now()
+    }).then(() => {
       nameInput.value = '';
       messageInput.value = '';
-      alert("Wish sent! Thank you.");
+      alert("Wish sent! Thank you 🙏");
     });
   }
 };
 
-function updateWishDisplay() {
-  const display = document.getElementById('wish-text');
-  const author = document.getElementById('wish-author');
-  
-  if (allWishes.length === 0 || !display) return;
-
-  // Ensure index is within bounds (prevents errors if wishes are deleted)
-  if (currentWishIndex >= allWishes.length) currentWishIndex = 0;
-
-  const [id, wishData] = allWishes[currentWishIndex];
-  currentWishId = id; 
-
-  display.style.opacity = 0;
-  author.style.opacity = 0;
-  
-  setTimeout(() => {
-    display.textContent = wishData.message;
-    author.textContent = wishData.name;
-
-    display.scrollTop = 0; // reset scroll
-
-    display.style.opacity = 1;
-    author.style.opacity = 1;
-    
-    currentWishIndex = (currentWishIndex + 1) % allWishes.length;
-  }, 500);
-}
-
 window.handleDelete = function() {
-  if (!currentWishId) return;
-
-  const pass = prompt("Enter 4-digit admin password to delete this wish:");
+  const id = window._currentWishId;
+  if (!id) return;
+  const pass = prompt("Enter 4-digit admin password:");
   if (pass === "1234") {
-    const itemRef = ref(db, `wishes/${currentWishId}`);
-    remove(itemRef).then(() => {
-      alert("Wish deleted.");
-      // Force an update so it doesn't show the deleted wish for 5 more seconds
-      updateWishDisplay();
-    });
+    remove(ref(db, `wishes/${id}`)).then(() => alert("Wish deleted."));
   } else {
     alert("Incorrect password.");
   }
 };
 
-setInterval(updateWishDisplay, 5000);
+/* ══════════════════════════════════
+   5. LIGHTBOX (fixed)
+══════════════════════════════════ */
+function initLightbox() {
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const closeBtn = document.getElementById('lightboxClose');
+
+  // Open on gallery image click
+  document.querySelectorAll('.gallery-img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  // Close on backdrop click (not on image)
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  // Close button
+  closeBtn.addEventListener('click', closeLightbox);
+
+  // Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+// Also expose globally just in case
+window.openLightbox = function(img) {
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightbox = document.getElementById('lightbox');
+  lightboxImg.src = img.src;
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+};
+window.closeLightbox = function() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+};
+
+// Init lightbox immediately (not waiting for openInvitation)
+initLightbox();
 
 /* ══════════════════════════════════
-   OPENING BUTTERFLIES
+   6. SCROLL ANIMATIONS
+══════════════════════════════════ */
+function initScrollAnim() {
+  const els = document.querySelectorAll('#invitation .fade-in, #invitation .slide-left, #invitation .slide-right');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
+}
+
+/* ══════════════════════════════════
+   7. OPENING BUTTERFLIES
 ══════════════════════════════════ */
 (function(){
-  const c=document.getElementById('op-bf-canvas');
-  const ctx=c.getContext('2d');
-  let W,H,alive=true;
-  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;}
-  resize(); window.addEventListener('resize',resize);
+  const c = document.getElementById('op-bf-canvas');
+  const ctx = c.getContext('2d');
+  let W, H, alive = true;
+  function resize(){ W = c.width = window.innerWidth; H = c.height = window.innerHeight; }
+  resize(); window.addEventListener('resize', resize);
 
-  const PAL=[
+  const PAL = [
     {body:'#4a1a2e',w1:'#e05580',w2:'#f8a0b8',spot:'rgba(255,240,250,0.7)',vein:'rgba(180,40,80,0.35)'},
     {body:'#3a2800',w1:'#d4a020',w2:'#f8d880',spot:'rgba(255,248,220,0.7)',vein:'rgba(160,100,10,0.3)'},
     {body:'#1a3820',w1:'#38a858',w2:'#88d898',spot:'rgba(240,255,240,0.7)',vein:'rgba(20,100,40,0.3)'},
@@ -1170,103 +1323,80 @@ setInterval(updateWishDisplay, 5000);
     {body:'#3a1800',w1:'#e06018',w2:'#f8a858',spot:'rgba(255,248,235,0.7)',vein:'rgba(180,60,10,0.3)'},
   ];
 
-  function mkBF(sc){
-    const p=PAL[Math.floor(Math.random()*PAL.length)];
-    return{p,s:14+Math.random()*18,x:Math.random()*W,y:sc?Math.random()*H:H+70,
-      vx:(Math.random()-.5)*.55,vy:-(0.27+Math.random()*.37),
-      fT:Math.random()*Math.PI*2,fSpd:0.038+Math.random()*.022,
-      swT:Math.random()*Math.PI*2,swSpd:0.006+Math.random()*.005,
-      swA:0.6+Math.random()*1.1,tilt:Math.random()*Math.PI*2,
-      op:0.65+Math.random()*.28,rot:(Math.random()-.5)*.16};
+  function mkBF(sc) {
+    const p = PAL[Math.floor(Math.random()*PAL.length)];
+    return { p, s:14+Math.random()*18, x:Math.random()*W, y:sc?Math.random()*H:H+70,
+      vx:(Math.random()-.5)*.55, vy:-(0.27+Math.random()*.37),
+      fT:Math.random()*Math.PI*2, fSpd:0.038+Math.random()*.022,
+      swT:Math.random()*Math.PI*2, swSpd:0.006+Math.random()*.005,
+      swA:0.6+Math.random()*1.1, tilt:Math.random()*Math.PI*2,
+      op:0.65+Math.random()*.28, rot:(Math.random()-.5)*.16 };
   }
-  function upd(b){
-    b.fT+=b.fSpd;b.swT+=b.swSpd;b.tilt+=0.01;
-    b.x+=b.vx+Math.sin(b.swT)*b.swA;
-    b.y+=b.vy+Math.sin(b.tilt)*.28;
-    if(b.y<-b.s*4)Object.assign(b,mkBF(false));
-    if(b.x<-120)b.x=W+120; if(b.x>W+120)b.x=-120;
+  function upd(b) {
+    b.fT+=b.fSpd; b.swT+=b.swSpd; b.tilt+=0.01;
+    b.x+=b.vx+Math.sin(b.swT)*b.swA; b.y+=b.vy+Math.sin(b.tilt)*.28;
+    if(b.y<-b.s*4) Object.assign(b,mkBF(false));
+    if(b.x<-120) b.x=W+120; if(b.x>W+120) b.x=-120;
   }
-  function drw(b){
-    const f=(Math.cos(b.fT)+1)/2,s=b.s,p=b.p;
-    ctx.save();ctx.globalAlpha=b.op;ctx.translate(b.x,b.y);ctx.rotate(b.rot+Math.sin(b.tilt)*.07);
+  function drw(b) {
+    const f=(Math.cos(b.fT)+1)/2, s=b.s, p=b.p;
+    ctx.save(); ctx.globalAlpha=b.op; ctx.translate(b.x,b.y); ctx.rotate(b.rot+Math.sin(b.tilt)*.07);
     [-1,1].forEach(side=>{
-      ctx.save();ctx.scale(side*f,1);
-      ctx.beginPath();ctx.moveTo(0,0);
+      ctx.save(); ctx.scale(side*f,1);
+      ctx.beginPath(); ctx.moveTo(0,0);
       ctx.bezierCurveTo(s*.22,-s*.82,s*1.02,-s*1.02,s*1.12,-s*.36);
-      ctx.bezierCurveTo(s*1.02,s*.14,s*.42,s*.26,0,s*.1);ctx.closePath();
-      ctx.fillStyle=p.w1;ctx.fill();
-      ctx.beginPath();ctx.moveTo(0,0);
+      ctx.bezierCurveTo(s*1.02,s*.14,s*.42,s*.26,0,s*.1); ctx.closePath();
+      ctx.fillStyle=p.w1; ctx.fill();
+      ctx.beginPath(); ctx.moveTo(0,0);
       ctx.bezierCurveTo(s*.18,-s*.62,s*.76,-s*.76,s*.83,-s*.3);
-      ctx.bezierCurveTo(s*.73,s*.08,s*.33,s*.18,0,s*.06);ctx.closePath();
-      ctx.fillStyle=p.w2;ctx.globalAlpha=0.58;ctx.fill();ctx.globalAlpha=1;
-      ctx.strokeStyle=p.vein;ctx.lineWidth=0.65;
+      ctx.bezierCurveTo(s*.73,s*.08,s*.33,s*.18,0,s*.06); ctx.closePath();
+      ctx.fillStyle=p.w2; ctx.globalAlpha=0.58; ctx.fill(); ctx.globalAlpha=1;
+      ctx.strokeStyle=p.vein; ctx.lineWidth=0.65;
       [[0,0,s*.32,-s*.52,s*.92,-s*.56],[0,0,s*.56,-s*.22,s*.96,-s*.16]].forEach(v=>{
-        ctx.beginPath();ctx.moveTo(v[0],v[1]);ctx.quadraticCurveTo(v[2],v[3],v[4],v[5]);ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(v[0],v[1]); ctx.quadraticCurveTo(v[2],v[3],v[4],v[5]); ctx.stroke();
       });
-      ctx.beginPath();ctx.ellipse(s*.63,-s*.41,s*.12,s*.09,-.3,0,Math.PI*2);ctx.fillStyle='rgba(0,0,0,0.28)';ctx.fill();
-      ctx.beginPath();ctx.ellipse(s*.63,-s*.41,s*.065,s*.052,-.3,0,Math.PI*2);ctx.fillStyle=p.spot;ctx.fill();
+      ctx.beginPath(); ctx.ellipse(s*.63,-s*.41,s*.12,s*.09,-.3,0,Math.PI*2); ctx.fillStyle='rgba(0,0,0,0.28)'; ctx.fill();
+      ctx.beginPath(); ctx.ellipse(s*.63,-s*.41,s*.065,s*.052,-.3,0,Math.PI*2); ctx.fillStyle=p.spot; ctx.fill();
       ctx.restore();
-      ctx.save();ctx.scale(side*f*.95,1);
-      ctx.beginPath();ctx.moveTo(0,s*.06);
+      ctx.save(); ctx.scale(side*f*.95,1);
+      ctx.beginPath(); ctx.moveTo(0,s*.06);
       ctx.bezierCurveTo(s*.14,s*.2,s*.86,s*.72,s*.76,s*.96);
-      ctx.bezierCurveTo(s*.56,s*1.16,s*.1,s*.72,0,s*.46);ctx.closePath();
-      ctx.fillStyle=p.w1;ctx.fill();
-      ctx.beginPath();ctx.moveTo(0,s*.09);
-      ctx.bezierCurveTo(s*.11,s*.22,s*.66,s*.6,s*.56,s*.8);
-      ctx.bezierCurveTo(s*.39,s*.96,s*.08,s*.62,0,s*.39);ctx.closePath();
-      ctx.fillStyle=p.w2;ctx.globalAlpha=0.52;ctx.fill();ctx.globalAlpha=1;
+      ctx.bezierCurveTo(s*.56,s*1.16,s*.1,s*.72,0,s*.46); ctx.closePath();
+      ctx.fillStyle=p.w1; ctx.fill();
       ctx.restore();
     });
     const bg=ctx.createLinearGradient(0,-s*.62,0,s*1.1);
-    bg.addColorStop(0,p.w2);bg.addColorStop(1,p.body);
-    ctx.beginPath();ctx.ellipse(0,s*.19,s*.066,s*.72,0,0,Math.PI*2);ctx.fillStyle=bg;ctx.fill();
-    ctx.beginPath();ctx.arc(0,-s*.53,s*.09,0,Math.PI*2);ctx.fillStyle=p.body;ctx.fill();
-    ctx.save();ctx.strokeStyle=p.body;ctx.lineWidth=0.88;ctx.lineCap='round';
+    bg.addColorStop(0,p.w2); bg.addColorStop(1,p.body);
+    ctx.beginPath(); ctx.ellipse(0,s*.19,s*.066,s*.72,0,0,Math.PI*2); ctx.fillStyle=bg; ctx.fill();
+    ctx.beginPath(); ctx.arc(0,-s*.53,s*.09,0,Math.PI*2); ctx.fillStyle=p.body; ctx.fill();
+    ctx.save(); ctx.strokeStyle=p.body; ctx.lineWidth=0.88; ctx.lineCap='round';
     [-1,1].forEach(side=>{
-      ctx.beginPath();ctx.moveTo(side*s*.04,-s*.55);
-      ctx.quadraticCurveTo(side*s*.28,-s*.9,side*s*.36*f,-s*1.08);ctx.stroke();
-      ctx.beginPath();ctx.arc(side*s*.36*f,-s*1.1,s*.06,0,Math.PI*2);ctx.fillStyle=p.body;ctx.fill();
+      ctx.beginPath(); ctx.moveTo(side*s*.04,-s*.55);
+      ctx.quadraticCurveTo(side*s*.28,-s*.9,side*s*.36*f,-s*1.08); ctx.stroke();
+      ctx.beginPath(); ctx.arc(side*s*.36*f,-s*1.1,s*.06,0,Math.PI*2); ctx.fillStyle=p.body; ctx.fill();
     });
-    ctx.restore();ctx.restore();
+    ctx.restore(); ctx.restore();
   }
 
-  const bfs=Array.from({length:12},()=>mkBF(true));
+  const bfs = Array.from({length:12}, ()=>mkBF(true));
   (function loop(){
-    if(!alive)return;
+    if(!alive) return;
     ctx.clearRect(0,0,W,H);
-    bfs.forEach(b=>{upd(b);drw(b);});
+    bfs.forEach(b=>{ upd(b); drw(b); });
     requestAnimationFrame(loop);
   })();
-  window._killOpeningBF=()=>{alive=false;ctx.clearRect(0,0,W,H);};
+  window._killOpeningBF = ()=>{ alive=false; ctx.clearRect(0,0,W,H); };
 })();
 
-function initScrollAnim(){
-  const els=document.querySelectorAll('#invitation .fade-in,#invitation .slide-left,#invitation .slide-right');
-  const io=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
-  },{threshold:0.12});
-  els.forEach(el=>io.observe(el));
-}
-
-function openLightbox(img){
-  document.getElementById('lightbox-img').src=img.src;
-  document.getElementById('lightbox').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeLightbox(event){
-  if(!event||event.target!==document.getElementById('lightbox-img')){
-    document.getElementById('lightbox').classList.remove('open');
-    document.body.style.overflow='';
-  }
-}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
-
-function initInvFX(){
-  const canvas=document.getElementById('fx');
-  const ctx=canvas.getContext('2d');
-  let W,H;
-  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
-  resize();window.addEventListener('resize',resize);
+/* ══════════════════════════════════
+   8. INVITATION FX (butterflies + birds + petals)
+══════════════════════════════════ */
+function initInvFX() {
+  const canvas = document.getElementById('fx');
+  const ctx = canvas.getContext('2d');
+  let W, H;
+  function resize(){ W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight; }
+  resize(); window.addEventListener('resize', resize);
 
   const PAL=[
     {body:'#4a1a2e',w1:'#e05580',w2:'#f8a0b8',spot:'rgba(255,240,250,0.7)',vein:'rgba(180,40,80,0.35)'},
@@ -1386,7 +1516,7 @@ function initInvFX(){
   })();
 }
 
-document.body.style.overflow='hidden';
+document.body.style.overflow = 'hidden';
 </script>
 </body>
 </html>

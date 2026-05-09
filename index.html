@@ -38,19 +38,52 @@
 }
 
 #layer-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex; 
   z-index: 1;
-  background: url('images/lanscapeBackground.webp') center center / cover no-repeat;
 }
 
+.cloud-panel {
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  background: url('images/lanscapeBackground.webp') center center / cover no-repeat;
+  /* Normal panels use this animation */
+  animation: moveNormal 12s linear infinite;
+  margin-right: -1px; 
+}
+
+/* The Mirrored Panel */
+.mirrored {
+  /* This animation includes the scaleX(-1) so it stays flipped while moving */
+  animation: moveMirrored 12s linear infinite;
+}
+
+/* Animation for Normal Panels (1 and 3) */
+@keyframes moveNormal {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-200%); }
+}
+
+/* Animation for the Mirrored Panel (2) */
+@keyframes moveMirrored {
+  0% { transform: translateX(0) scaleX(-1); }
+  100% { transform: translateX(-200%) scaleX(-1); }
+}
+
+/* Foreground Building */
 #layer-building { z-index: 2; }
 #layer-building img {
   position: absolute;
-  bottom: 50px;
+  bottom: 0;
   left: 0;
   width: 100vw;
   height: 60vh;
   object-fit: cover;
-  object-position: bottom center; 
+  object-position: bottom center;
 }
 
 #layer-floralgate { z-index: 3; }
@@ -93,6 +126,7 @@
 }
 .curtain-behind-left  {
   left: 0;
+  top: -50;
   transform-origin: top left;
   animation: curtainL 6s ease-in-out infinite;
 }
@@ -310,14 +344,14 @@
   font-style: italic; 
   color: #f4b8c8; 
   -webkit-text-fill-color: #f4b8c8;
-  font-size: 0.7em; 
+  font-size: 5em; 
   margin: 0 12px; 
   filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
 }
 
 .op-date {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(12px, 2.6vw, 18px);
+  font-size: clamp(18px, 2.6vw, 18px);
   letter-spacing: 5px;
   font-weight: 700;
   margin-top: 15px;
@@ -426,7 +460,7 @@ body::before {
 .groom-bridgeTitle h2 { font-family:Moulpali,sans-serif; font-size:12px; font-weight:500; margin:0; }
 .groom-bridge span { display:block; margin:10px 0; font-family:Moulpali,sans-serif; font-size:13px; }
 .groom-bridgeName { display:flex; justify-content:space-between; max-width:300px; margin:0 auto; gap:40px; }
-.groom-bridgeName h2 { font-family:Moul,sans-serif; font-size:18px; font-weight:500; margin:0; }
+.groom-bridgeName h2 { font-family:Moul,sans-serif; font-size:16px; font-weight:500; margin:0; }
 
 .eventDate { margin-top:30px; }
 .eventDate h6 { font-weight:500; font-family:Moul,sans-serif; font-size:13px; line-height:1.9; margin:0; }
@@ -741,7 +775,11 @@ body::before {
      OPENING  (8 layers)
 ══════════════════════════════════ -->
 <div id="opening">
-  <div class="op-layer" id="layer-bg"></div>
+  <div class="op-layer" id="layer-bg">
+    <div class="cloud-panel"></div>         <!-- Panel 1: Normal -->
+    <div class="cloud-panel mirrored"></div> <!-- Panel 2: Flipped -->
+    <div class="cloud-panel"></div>         <!-- Panel 3: Normal -->
+  </div>
   <div class="op-layer" id="layer-building">
     <img src="images/centralBuilding.webp" alt="">
   </div>
@@ -778,9 +816,11 @@ body::before {
     <div class="op-pre-title">Engagement Invitation</div>
     <div class="op-title">សិរីមង្គលពិធីភ្ជាប់ពាក្យ</div>
     <div class="op-divider"></div>
-    <div class="op-names">លាបហេង <span class="op-amp">&amp;</span> រ៉ានី</div>
+    <div class="op-names">អៀង​​​​ លាបហេង</div>
+    <span class="op-amp">&amp;</span>
+    <div class="op-names">ឆាវ វិចត្រារ៉ានី</div>
     <div class="op-divider"></div>
-    <div class="op-date">ថ្ងៃព្រហស្បតិ៍ · ២៧ ឧសភា · ២០២៦</div>
+    <div class="op-date">ថ្ងៃពុធ · ២៧ ឧសភា · ២០២៦</div>
     <button class="op-btn" onclick="openInvitation()">សូមបើកលិខិតអញ្ជើញ ✦</button>
     <div class="op-hint">Tap to open your invitation</div>
   </div>
@@ -816,21 +856,21 @@ body::before {
       <div class="mono-Main-Tittle">សិរីមង្គលពិធីភ្ជាប់ពាក្យ</div>
     </header>
     <div class="groom-parentName">
-      <div><p>លោក​<br>លោកស្រី</p></div>
-      <div><p>លោក​<br>លោកស្រី</p></div>
+      <div><p>លោក​ កែវ ចាន់​<br>លោកស្រី ងិន សារ៉ាន</p></div>
+      <div><p>លោក​ ឆាវ​​​ អុីនទ័រ<br>លោកស្រី វ័ង ទ័រជីង</p></div>
     </div>
     <div>
       <h4 class="invite">សូមគោរពអញ្ជើញ</h4>
-      <p class="sub-invited">សូមគោរពអញ្ជើញ ឯកឧត្ដម អ្នកឧកញ៉ា លោកឧកញ៉ា លោកជំទាវ លោក លោកស្រី អ្នកនាងកញ្ញា អញ្ជើញចូលរួមជាអធិបតីយភាព និងជាភ្ញៀវកិត្តិយស ក្នុងកម្មវិធីសិរីមង្គលពិធីភ្ជាប់ពាក្យ កូនប្រុស កូនស្រី របស់យើងខ្ញុំ។</p>
+      <p class="sub-invited">ឯកឧត្ដម អ្នកឧកញ៉ា លោកឧកញ៉ា លោកជំទាវ លោក លោកស្រី អ្នកនាងកញ្ញា អញ្ជើញចូលរួមជាអធិបតីយភាព និងជាភ្ញៀវកិត្តិយស ក្នុងកម្មវិធីសិរីមង្គលពិធីភ្ជាប់ពាក្យ កូនប្រុស កូនស្រី របស់យើងខ្ញុំ។</p>
     </div>
     <div class="groom-bridge">
-      <div class="groom-bridgeTitle"><h2>កូនប្រុស</h2><h2>កូនស្រី</h2></div>
+      <div class="groom-bridgeTitle"><h2>កូនប្រុសនាម</h2><h2>កូនស្រីនាម</h2></div>
       <span>ជាគូនឹង</span>
-      <div class="groom-bridgeName"><h2>លាបហេង</h2><h2>រ៉ានី</h2></div>
+      <div class="groom-bridgeName"><h2>អៀង លាបហេង</h2><h2>ឆាវ វិចត្រារ៉ានី</h2></div>
     </div>
     <div class="eventDate">
       <h6>ដែលនឹងប្រព្រឹត្តទៅនៅ</h6>
-      <h6>ថ្ងៃព្រហស្បតិ៍ ទី២៧ ខែឧសភា ឆ្នាំ២០២៦</h6>
+      <h6>ថ្ងៃពុធ ទី២៧ ខែឧសភា ឆ្នាំ២០២៦</h6>
       <h6>ស្ថិតនៅ គេហដ្ឋានខាងប្រុស ភូមិ៣ សង្កាត់អូឡាំពិក</h6>
       <h6>ខ័ណ្ឌបឺងកេងកង១ រាជធានីភ្នំពេញ ដោយមេត្រីភាព។</h6>
       <h6>សូមអរគុណ!</h6>
@@ -865,10 +905,10 @@ body::before {
       <div class="gallery-row-horizontal"><img src="images/cph3.webp" alt="" class="gallery-img fade-in" loading="lazy"></div>
       <div class="gallery-row-horizontal"><img src="images/bh1.webp" alt="" class="gallery-img fade-in" loading="lazy"></div>
       <div class="gallery-row-horizontal"><img src="images/cph4.webp" alt="" class="gallery-img fade-in" loading="lazy"></div>
-      <div class="gallery-row-vertical">
+      <!-- <div class="gallery-row-vertical">
         <img src="images/cpv5.webp" alt="" class="gallery-img slide-left" loading="lazy">
         <img src="images/gv1.webp"  alt="" class="gallery-img slide-right" loading="lazy">
-      </div>
+      </div> -->
       <div class="gallery-row-single-vertical"><img src="images/cpv6.webp" alt="" class="gallery-img fade-in" loading="lazy"></div>
       <div class="gallery-row-horizontal"><img src="images/cpv7.webp" alt="" class="gallery-img fade-in" loading="lazy"></div>
       <div class="gallery-row-vertical">
@@ -876,12 +916,12 @@ body::before {
         <img src="images/bv1.webp"  alt="" class="gallery-img slide-right" loading="lazy">
       </div>
       <div class="gallery-row-single-vertical"><img src="images/cpv8.webp" alt="" class="gallery-img fade-in" loading="lazy"></div>
-      <div class="gallery-row-horizontal"><img src="images/cph5.webp" alt="" class="gallery-img fade-in" loading="lazy"></div>
+      <!-- <div class="gallery-row-horizontal"><img src="images/cph5.webp" alt="" class="gallery-img fade-in" loading="lazy"></div>
       <div class="gallery-row-vertical">
         <img src="images/gv2.webp" alt="" class="gallery-img slide-left" loading="lazy">
         <img src="images/bv2.webp" alt="" class="gallery-img slide-right" loading="lazy">
       </div>
-      <div class="gallery-row-horizontal"><img src="images/cpv9.webp" alt="" class="gallery-img fade-in" loading="lazy"></div>
+      <div class="gallery-row-horizontal"><img src="images/cpv9.webp" alt="" class="gallery-img fade-in" loading="lazy"></div> -->
     </div>
 
     <!-- ══════════════════════

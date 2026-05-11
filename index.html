@@ -122,42 +122,77 @@
   height: auto;
   object-fit: contain;
   object-position: top;
-}
-.curtain-behind-left  {
-  left: 0;
-  top: -50;
-  transform-origin: top left;
-  animation: curtainL 6s ease-in-out infinite;
-}
-.curtain-behind-right {
-  right: 0;
-  transform-origin: top right;
-  animation: curtainR 6s ease-in-out infinite;
-}
-@keyframes curtainL {
-  0%,100% { transform: rotate(0deg) skewX(0deg);    }
-  40%     { transform: rotate(1deg) skewX(0.4deg);  }
-  75%     { transform: rotate(-0.7deg) skewX(-0.2deg); }
-}
-@keyframes curtainR {
-  0%,100% { transform: rotate(0deg) skewX(0deg);     }
-  40%     { transform: rotate(-1deg) skewX(-0.4deg); }
-  75%     { transform: rotate(0.7deg) skewX(0.2deg); }
+  z-index: 6;
+  /* Crucial: The curtain hangs from the top center of its own width */
+  transform-origin: top center; 
 }
 
-#layer-curtains-front { z-index:6; }
+.curtain-behind-left {
+  left: 0;
+  top: -10px;
+  /* 8 seconds - a slow, heavy fabric feel */
+  animation: realisticWavingL 3s ease-in-out infinite;
+}
+
+.curtain-behind-right {
+  right: 0;
+  top: -10px;
+  /* 8.5 seconds - different timing makes it look natural */
+  animation: realisticWavingR 4s ease-in-out infinite;
+}
+
+/* Left Curtain: Sways slightly outward and billows */
+@keyframes realisticWavingL {
+  0%, 100% { 
+    transform: rotate(0deg) skewX(0deg) scaleX(1); 
+  }
+  40% { 
+    transform: rotate(2deg) skewX(1deg) scaleX(1.03); 
+  }
+  75% { 
+    transform: rotate(-1deg) skewX(-0.5deg) scaleX(0.98); 
+  }
+}
+
+/* Right Curtain: Sways slightly outward and billows */
+@keyframes realisticWavingR {
+  0%, 100% { 
+    transform: rotate(0deg) skewX(0deg) scaleX(1); 
+  }
+  40% { 
+    transform: rotate(-2deg) skewX(-1deg) scaleX(1.03); 
+  }
+  75% { 
+    transform: rotate(1deg) skewX(0.5deg) scaleX(0.98); 
+  }
+}
+#layer-curtains-front { 
+  z-index: 7; /* Stays in front of the side curtains */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
 #layer-curtains-front img {
   position: absolute;
-  top: -5px; left: 0;
+  top: -5px; 
+  left: 0;
   width: 100%;
   height: auto;
-  animation: curtainFront 7s ease-in-out infinite;
   transform-origin: top center;
+  /* Slightly slower than side curtains to feel 'heavier' */
+  animation: realisticFront 3.5s ease-in-out infinite;
 }
-@keyframes curtainFront {
-  0%,100% { transform: scaleX(1)     translateY(0px); }
-  40%     { transform: scaleX(1.01)  translateY(4px); }
-  75%     { transform: scaleX(0.995) translateY(1px); }
+
+@keyframes realisticFront {
+  0%, 100% { 
+    transform: scale(1, 1) translateY(0); 
+  }
+  50% { 
+    /* scaleX(1.02) = billows wider, scaleY(1.03) = stretches down slightly */
+    transform: scale(1.02, 1.02) translateY(5px); 
+  }
 }
 
 #layer-top-florals { z-index:7; }
@@ -319,8 +354,8 @@
   background: linear-gradient(to bottom, #ffffff 0%, #f0d898 40%, #b08000 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.9));
-  -webkit-filter: drop-shadow(0 4px 12px rgba(0,0,0,0.9));
+  filter: drop-shadow(0 4px 20px rgba(0,0,0,0.9));
+  -webkit-filter: drop-shadow(0 4px 20px rgba(0,0,0,0.9));
   line-height: 1.8;
   animation: opFadeUp 1s ease 0.5s both;
 }
@@ -334,8 +369,8 @@
   background: linear-gradient(to bottom, #ffffff 0%, #f0d898 40%, #b08000 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.9));
-  -webkit-filter: drop-shadow(0 4px 12px rgba(0,0,0,0.9));
+  filter: drop-shadow(0 4px 20px rgba(0,0,0,0.9));
+  -webkit-filter: drop-shadow(0 4px 20px rgba(0,0,0,0.9));
   line-height: 1.2;
   animation: opFadeUp 1s ease 0.5s both;
 }
@@ -380,7 +415,7 @@
   font-size: 12px;
   cursor: pointer;
   letter-spacing: 2px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
   transition: background .3s, box-shadow .3s, transform .2s;
   animation: opFadeUp 1s ease 1.1s both;
   position: relative;

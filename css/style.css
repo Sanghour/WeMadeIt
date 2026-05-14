@@ -501,6 +501,42 @@ body::before {
 .eventDate { margin-top:30px; }
 .eventDate h6 { font-weight:500; font-family:Moul,sans-serif; font-size:13px; line-height:1.9; margin:0; }
 
+.countdown-section {
+    text-align: center;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 70px;
+    border: 1px solid #b08d32;
+    padding: 15px 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.5); /* Slight glass effect */
+}
+
+.time-block span {
+    font-size: 3.5rem; /* Large impact numbers */
+    letter-spacing: -2px;
+    text-shadow: 1px 1px 0px rgba(146, 105, 0, 0.2);
+}
+
+.time-block p {
+    font-family: 'Moul', serif; /* Traditional Khmer heading font */
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    margin-top: -5px;
+}
+
 .timeline {
     position: relative;
     max-width: 600px;
@@ -563,6 +599,25 @@ body::before {
 /* Remove the line for the very last item */
 .event.last .marker::after {
     display: none;
+}
+
+.traditional-gold-icon {
+  /* Set a fixed size to match your other timeline icons */
+  max-width: 120px; 
+  height: auto;
+  
+  filter: invert(36%) sepia(88%) saturate(1471%) hue-rotate(27deg) brightness(91%) contrast(101%);
+
+  /* Ensure it has a smooth display on high-DPI screens */
+  image-rendering: -webkit-optimize-contrast; 
+  image-rendering: crisp-edges;
+}
+
+.ceremony-box {
+  display: flex;
+  justify-content: flex-end; /* Align right on the left column */
+  align-items: center;
+  margin-right: -10px; /* Slight adjust toward the vertical line */
 }
 
 .gold-icon {
@@ -873,4 +928,18 @@ h3, p { margin: 0; }
   .music-player { bottom:16px; right:12px; padding:6px 12px 6px 8px; }
   .op-center { padding-top: 22%; }
   #layer-building img { width:100%; }
+}
+/* MOBILE RESPONSIVE FIX */
+@media (max-width: 480px) {
+    .countdown-container {
+        gap: 12px; /* Reduced gap to prevent wrapping */
+    }
+    
+    .time-block span {
+        font-size: 2rem; /* Slightly smaller numbers for small screens */
+    }
+    
+    .time-block p {
+        font-size: 0.8rem;
+    }
 }
